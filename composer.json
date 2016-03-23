@@ -1,0 +1,11 @@
+{
+    "name": "styleflasher/ezplatformbasebundle",
+    "description": "Base Bundle for eZ Publish v5",
+    "authors": [
+        {
+            "name": "René Hrdina",
+            "email": "rene.hrdina@styleflasher.at"
+        }
+    ],
+    "require": {}
+}

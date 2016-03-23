@@ -1,0 +1,3 @@
+styleflashere_z_platform_base_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: StyleflashereZPlatformBaseBundle:Default:index }

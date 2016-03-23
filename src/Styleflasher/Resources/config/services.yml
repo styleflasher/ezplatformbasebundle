@@ -1,0 +1,56 @@
+parameters:
+    sf.ezp_base.criterion.child.class: Styleflasher\eZPlatformBaseBundle\CriterionGenerators\ChildCriterion
+    sf.ezp_base.controller.fetch_children.class: Styleflasher\eZPlatformBaseBundle\Controller\FetchController
+    sf.ezp_base.sort_clause.location_priority.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\LocationPriority
+    sf.ezp_base.sort_clause.field_value.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\FieldValue
+
+services:
+    sf.ezp_base.criterion.child:
+        class: %sf.ezp_base.criterion.child.class%
+    
+    sf.ezp_base.controller.fetch_children:
+        class: %sf.ezp_base.controller.fetch_children.class%
+        arguments:
+            - @ez_content
+            - @ezpublish.api.service.search
+            - @ezpublish.api.service.location
+            - @ezpublish.config.resolver
+            - @sf.ezp_base.criterion.child
+            - @sf.ezp_base.sort_clause.location_priority.desc
+    
+    # Sort Clause Generators
+    sf.ezp_base.sort_clause.location_priority:
+        class: %sf.ezp_base.sort_clause.location_priority.class%
+        abstract: true
+        
+    sf.ezp_base.sort_clause.location_priority.asc:
+        parent: sf.ezp_base.sort_clause.location_priority
+        calls:
+            - [setSortDirection, ['asc']]
+        
+    sf.ezp_base.sort_clause.location_priority.desc:
+        parent: sf.ezp_base.sort_clause.location_priority
+        calls:
+            - [setSortDirection, ['desc']]
+            
+    # Example Criteria
+    # example child criterion for 'news' class
+    #sf.vivomondo.criterion.child.news:
+    #    parent: sf.ezp_base.criterion.child
+    #    calls:
+    #        - [setChildContentTypeIdentifiers, [['news']]]
+            
+    # Example sort Clause Generators
+    #sf.vivomondo.sort_clause.news_date:
+    #    class: %sf.ezp_base.sort_clause.field_value.class%
+    #    arguments: 
+    #        - 'news'
+    #        - 'anzeigen_ab'
+    
+    # Example controller with custom criterion and sort clause generatorss
+    #sf.vivomondo.controller.fetch_children.news:
+    #    parent: sf.ezp_base.controller.fetch_children
+    #    calls:
+    #        - [setCriterionGenerator, [@sf.vivomondo.criterion.child.news]]
+    #        - [setSortClauseGenerator, [@sf.vivomondo.sort_clause.news_date]]
+    #        - [setLimit, [10]]
