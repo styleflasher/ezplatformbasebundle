@@ -5,7 +5,7 @@ parameters:
     sf.ezp_base.controller.fetch_children.class: Styleflasher\eZPlatformBaseBundle\Controller\FetchController
     sf.ezp_base.sort_clause.location_priority.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\LocationPriority
     sf.ezp_base.sort_clause.date_published.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\DatePublished
-    sf.ezp_base.sort_clause.date_published.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\ContentName
+    sf.ezp_base.sort_clause.content_name.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\ContentName
     sf.ezp_base.sort_clause.field_value.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\FieldValue
     sf.ezp_base.value_provider.fixed.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Fixed
     sf.ezp_base.value_provider.date.today.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Today
