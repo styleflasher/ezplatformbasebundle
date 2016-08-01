@@ -7,5 +7,8 @@
             "email": "rene.hrdina@styleflasher.at"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": { "Styleflasher\\eZPlatformBaseBundle\\": "src/" }
+    }
 }

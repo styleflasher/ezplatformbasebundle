@@ -1,0 +1,113 @@
+parameters:
+    sf.ezp_base.criterion.child.class: Styleflasher\eZPlatformBaseBundle\CriterionGenerators\ChildCriterion
+    sf.ezp_base.criterion.field.class: Styleflasher\eZPlatformBaseBundle\CriterionGenerators\FieldCriterion
+    sf.ezp_base.criterion.compound.class: Styleflasher\eZPlatformBaseBundle\CriterionGenerators\CompoundCriterion
+    sf.ezp_base.controller.fetch_children.class: Styleflasher\eZPlatformBaseBundle\Controller\FetchController
+    sf.ezp_base.sort_clause.location_priority.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\LocationPriority
+    sf.ezp_base.sort_clause.date_published.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\DatePublished
+    sf.ezp_base.sort_clause.date_published.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\ContentName
+    sf.ezp_base.sort_clause.field_value.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\FieldValue
+    sf.ezp_base.value_provider.fixed.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Fixed
+    sf.ezp_base.value_provider.date.today.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Today
+    sf.ezp_base.value_provider.date.tomorrow.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Tomorrow
+    sf.ezp_base.value_provider.date.yesterday.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Yesterday
+
+services:
+    # Criterion Generators
+    sf.ezp_base.criterion.child:
+        class: %sf.ezp_base.criterion.child.class%
+    
+    sf.ezp_base.criterion.compound:
+        class: %sf.ezp_base.criterion.compound.class%
+        
+    sf.ezp_base.criterion.field:
+        class: %sf.ezp_base.criterion.field.class%
+    
+    sf.ezp_base.controller.fetch_children:
+        class: %sf.ezp_base.controller.fetch_children.class%
+        arguments:
+            - @ez_content
+            - @ezpublish.api.service.search
+            - @ezpublish.api.service.location
+            - @ezpublish.config.resolver
+            - @sf.ezp_base.criterion.child
+            - @sf.ezp_base.sort_clause.location_priority.desc
+    
+    # Sort Clause Generators
+    sf.ezp_base.sort_clause.location_priority:
+        class: %sf.ezp_base.sort_clause.location_priority.class%
+        abstract: true
+        
+    sf.ezp_base.sort_clause.location_priority.asc:
+        parent: sf.ezp_base.sort_clause.location_priority
+        calls:
+            - [setSortDirection, ['asc']]
+        
+    sf.ezp_base.sort_clause.location_priority.desc:
+        parent: sf.ezp_base.sort_clause.location_priority
+        calls:
+            - [setSortDirection, ['desc']]
+    
+    sf.ezp_base.sort_clause.date_published:
+        class: %sf.ezp_base.sort_clause.date_published.class%
+        abstract: true
+    
+    sf.ezp_base.sort_clause.date_published.asc:
+        parent: sf.ezp_base.sort_clause.date_published
+        calls:
+            - [setSortDirection, ['asc']]
+        
+    sf.ezp_base.sort_clause.date_published.desc:
+        parent: sf.ezp_base.sort_clause.date_published
+        calls:
+            - [setSortDirection, ['desc']]
+            
+    sf.ezp_base.sort_clause.content_name:
+        class: %sf.ezp_base.sort_clause.content_name.class%
+        abstract: true
+        
+    sf.ezp_base.sort_clause.content_name.asc:
+        parent: sf.ezp_base.sort_clause.content_name
+        calls:
+            - [setSortDirection, ['asc']]
+        
+    sf.ezp_base.sort_clause.content_name.desc:
+        parent: sf.ezp_base.sort_clause.content_name
+        calls:
+            - [setSortDirection, ['desc']]
+    
+    # Value Providers
+    
+    sf.ezp_base.value_provider.fixed:
+        class: %sf.ezp_base.value_provider.fixed.class%
+    
+    sf.ezp_base.value_provider.date.today:
+        class: %sf.ezp_base.value_provider.date.today.class%
+        
+    sf.ezp_base.value_provider.date.tomorrow:
+        class: %sf.ezp_base.value_provider.date.tomorrow.class%
+        
+    sf.ezp_base.value_provider.date.yesterday:
+        class: %sf.ezp_base.value_provider.date.yesterday.class%
+            
+    # Example Criteria
+    # example child criterion for 'news' class
+    #sf.vivomondo.criterion.child.news:
+    #    parent: sf.ezp_base.criterion.child
+    #    calls:
+    #        - [setChildContentTypeIdentifiers, [['news']]]
+            
+    # Example sort Clause Generators
+    #sf.vivomondo.sort_clause.news_date:
+    #    class: %sf.ezp_base.sort_clause.field_value.class%
+    #    arguments: 
+    #        - 'news'
+    #        - 'anzeigen_ab'
+    
+    # Example controller with custom criterion and sort clause generatorss
+    #sf.vivomondo.controller.fetch_children.news:
+    #    parent: sf.ezp_base.controller.fetch_children
+    #    calls:
+    #        - [setCriterionGenerator, [@sf.vivomondo.criterion.child.news]]
+    #        - [setSortClauseGenerator, [@sf.vivomondo.sort_clause.news_date]]
+    #        - [setLimit, [10]]
