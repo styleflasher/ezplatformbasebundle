@@ -7,10 +7,13 @@ parameters:
     sf.ezp_base.sort_clause.date_published.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\DatePublished
     sf.ezp_base.sort_clause.content_name.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\ContentName
     sf.ezp_base.sort_clause.field_value.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\FieldValue
+    sf.ezp_base.sort_clause.backend_value.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\BackendValue
     sf.ezp_base.value_provider.fixed.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Fixed
     sf.ezp_base.value_provider.date.today.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Today
     sf.ezp_base.value_provider.date.tomorrow.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Tomorrow
     sf.ezp_base.value_provider.date.yesterday.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Yesterday
+    
+    sf.ezp_base.location_service.class: Styleflasher\eZPlatformBaseBundle\eZ\Publish\Core\Repository\LocationService
 
 services:
     # Criterion Generators
@@ -75,7 +78,10 @@ services:
         parent: sf.ezp_base.sort_clause.content_name
         calls:
             - [setSortDirection, ['desc']]
-    
+            
+    sf.ezp_base.sort_clause.backend_value:
+        class: %sf.ezp_base.sort_clause.backend_value.class%
+            
     # Value Providers
     
     sf.ezp_base.value_provider.fixed:
@@ -89,7 +95,7 @@ services:
         
     sf.ezp_base.value_provider.date.yesterday:
         class: %sf.ezp_base.value_provider.date.yesterday.class%
-            
+        
     # Example Criteria
     # example child criterion for 'news' class
     #sf.vivomondo.criterion.child.news:
@@ -111,3 +117,4 @@ services:
     #        - [setCriterionGenerator, [@sf.vivomondo.criterion.child.news]]
     #        - [setSortClauseGenerator, [@sf.vivomondo.sort_clause.news_date]]
     #        - [setLimit, [10]]
+    
