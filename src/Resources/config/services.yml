@@ -118,3 +118,9 @@ services:
     #        - [setSortClauseGenerator, [@sf.vivomondo.sort_clause.news_date]]
     #        - [setLimit, [10]]
     
+
+    app.twig_extension:
+        class: Styleflasher\eZPlatformBaseBundle\Twig\YoutubeExtension
+        public: false
+        tags:
+            - { name: twig.extension }
