@@ -61,15 +61,15 @@ class MenuService
 
     protected function getMenuConfiguration() {
         $menuConfiguration = [
-            'has_submenu' => $this->configResolver->getParameter('menu.has_submenu', 'styleflasher_standard'),
-            'levels' => $this->configResolver->getParameter('menu.levels', 'styleflasher_standard'),
+            'has_submenu' => $this->configResolver->getParameter('menu.has_submenu', 'styleflashere_z_platform_base'),
+            'levels' => $this->configResolver->getParameter('menu.levels', 'styleflashere_z_platform_base'),
             'main' => [
-                'classes' => $this->configResolver->getParameter('menu.main.classes', 'styleflasher_standard'),
-                'excluded_location_ids' => $this->configResolver->getParameter('menu.main.excluded_location_ids', 'styleflasher_standard')
+                'classes' => $this->configResolver->getParameter('menu.main.classes', 'styleflashere_z_platform_base'),
+                'excluded_location_ids' => $this->configResolver->getParameter('menu.main.excluded_location_ids', 'styleflashere_z_platform_base')
             ],
             'sub' => [
-                'classes' => $this->configResolver->getParameter('menu.sub.classes', 'styleflasher_standard'),
-                'excluded_location_ids' => $this->configResolver->getParameter('menu.sub.excluded_location_ids', 'styleflasher_standard')
+                'classes' => $this->configResolver->getParameter('menu.sub.classes', 'styleflashere_z_platform_base'),
+                'excluded_location_ids' => $this->configResolver->getParameter('menu.sub.excluded_location_ids', 'styleflashere_z_platform_base')
             ]
         ];
 

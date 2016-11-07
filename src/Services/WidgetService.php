@@ -49,20 +49,20 @@ class WidgetService
     protected function getWidgetConfiguration() {
         $widgetConfiguration = [
             'social_media' => [
-                'show' => $this->configResolver->getParameter('right_column.social_media.show', 'styleflasher_standard'),
-                'facebook' => $this->configResolver->getParameter('right_column.social_media.facebook', 'styleflasher_standard'),
-                'twitter' => $this->configResolver->getParameter('right_column.social_media.twitter', 'styleflasher_standard'),
-                'linkedin' => $this->configResolver->getParameter('right_column.social_media.linkedin', 'styleflasher_standard')
+                'show' => $this->configResolver->getParameter('right_column.social_media.show', 'styleflashere_z_platform_base'),
+                'facebook' => $this->configResolver->getParameter('right_column.social_media.facebook', 'styleflashere_z_platform_base'),
+                'twitter' => $this->configResolver->getParameter('right_column.social_media.twitter', 'styleflashere_z_platform_base'),
+                'linkedin' => $this->configResolver->getParameter('right_column.social_media.linkedin', 'styleflashere_z_platform_base')
             ],
             'widgets' => [
-                'show' => $this->configResolver->getParameter('right_column.widgets.show', 'styleflasher_standard'),
-                'classes' => $this->configResolver->getParameter('right_column.widgets.classes', 'styleflasher_standard')
+                'show' => $this->configResolver->getParameter('right_column.widgets.show', 'styleflashere_z_platform_base'),
+                'classes' => $this->configResolver->getParameter('right_column.widgets.classes', 'styleflashere_z_platform_base')
             ],
             'additional_menu' => [
-                'show' => $this->configResolver->getParameter('right_column.additional_menu_level.show', 'styleflasher_standard'),
-                'depth' => $this->configResolver->getParameter('right_column.additional_menu_level.depth', 'styleflasher_standard'),
-                'classes' => $this->configResolver->getParameter('right_column.additional_menu_level.classes', 'styleflasher_standard'),
-                'excluded_location_ids' => $this->configResolver->getParameter('right_column.additional_menu_level.excluded_location_ids', 'styleflasher_standard')
+                'show' => $this->configResolver->getParameter('right_column.additional_menu_level.show', 'styleflashere_z_platform_base'),
+                'depth' => $this->configResolver->getParameter('right_column.additional_menu_level.depth', 'styleflashere_z_platform_base'),
+                'classes' => $this->configResolver->getParameter('right_column.additional_menu_level.classes', 'styleflashere_z_platform_base'),
+                'excluded_location_ids' => $this->configResolver->getParameter('right_column.additional_menu_level.excluded_location_ids', 'styleflashere_z_platform_base')
             ]
         ];
 

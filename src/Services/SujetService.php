@@ -50,12 +50,12 @@ class SujetService
             return $this->fetchSujets($parentLocation);
         }
 
-        $fallbackLocation = $this->locationService->loadLocation($this->configResolver->getParameter('sujets.fallback_container_location_id', 'styleflasher_standard'));
+        $fallbackLocation = $this->locationService->loadLocation($this->configResolver->getParameter('sujets.fallback_container_location_id', 'styleflashere_z_platform_base'));
         return $this->fetchSujets($fallbackLocation);
     }
 
     protected function buildQuery($location) {
-        $classIdentifier = $this->configResolver->getParameter('sujets.sujetclasses', 'styleflasher_standard');
+        $classIdentifier = $this->configResolver->getParameter('sujets.sujetclasses', 'styleflashere_z_platform_base');
 
         $criteria = [
             new ContentTypeIdentifier($classIdentifier),
