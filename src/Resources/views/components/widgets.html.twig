@@ -1,0 +1,11 @@
+<ul>
+    {% for additionalItem in widgets.additionalMenuItems %}
+        <li>
+            <a href="{{ path(additionalItem.location) }}">{{ ez_content_name(additionalItem.content) }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% for additionalContent in widgets.additionalContent %}
+    {{ render( controller( "ez_content:viewLocation", {"locationId": additionalContent.location.id, "viewType": "line"} ) ) }}
+{% endfor %}

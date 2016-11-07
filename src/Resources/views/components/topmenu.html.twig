@@ -1,0 +1,41 @@
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+</div>
+
+<nav id="site-nav" class="main-navigation nav-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="main-menu hidden-xs">
+                {% for menuItem in menu.menuStructure %}
+                    <li>
+                        <a href="{{ path(menuItem.location) }}">
+                            {{ ez_content_name( menuItem.content ) }}
+                        </a>
+
+                        {% if menuItem.submenu|length > 0 %}
+                            <ul style="display: none;">
+
+                                    {% for submenu in menuItem.submenu %}
+                                        <li>
+                                            <a href="{{ path(submenu.location) }}">
+                                                {{ ez_content_name( submenu.content ) }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                        
+                            </ul>
+                        {% endif %}
+
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

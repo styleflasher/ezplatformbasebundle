@@ -1,0 +1,13 @@
+<div class="bannercontainer">
+{% for sujet in sujets %}
+
+    {% if (not ez_is_field_empty(sujet.content,'sujet_img') and (ez_field_value(sujet.content, 'sujet_img').fileSize > 0))%}
+
+    <div class="slide-item">
+        {{ ez_render_field(sujet.content, 'sujet_img', { 'parameters':{ 'class': 'img-responsive', 'alias': 'sujet' } }) }}
+    </div>
+
+    {% endif %}
+
+{% endfor %}
+</div>

@@ -1,0 +1,10 @@
+<div class="breadcrump-container hidden-xs">
+    <div class="breadcrump-inside">
+        <div class="col-sm-12 pull-left">
+            {% for breadcrumbItem in breadcrumbItems %}
+                {% if not loop.first %} / {% endif %}<a href="{{ path(breadcrumbItem) }}">{{ breadcrumbItem.contentInfo.name }}</a>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
