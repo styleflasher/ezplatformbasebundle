@@ -16,6 +16,64 @@ parameters:
     sf.ezp_base.location_service.class: Styleflasher\eZPlatformBaseBundle\eZ\Publish\Core\Repository\LocationService
 
 services:
+    sf.standard.breadcrumb.controller:
+        class: Styleflasher\eZPlatformBaseBundle\Controller\BreadcrumbController
+        arguments:
+            - @templating
+            - @ezpublish.api.service.location
+            - @ezpublish.config.resolver
+    
+    sf.standard.sujet.controller:
+        class: Styleflasher\eZPlatformBaseBundle\Controller\SujetController
+        arguments:
+            - @templating
+            - @ezpublish.api.service.location
+            - @sf.standard.sujet.service
+
+    sf.standard.sujet.service:
+        class: Styleflasher\eZPlatformBaseBundle\Services\SujetService
+        arguments:
+            - @ezpublish.api.service.location
+            - @ezpublish.api.service.content
+            - @ezpublish.api.service.search
+            - @sf.standard.sortClause.service
+            - @ezpublish.config.resolver
+            
+    sf.standard.menu.controller:
+        class: Styleflasher\eZPlatformBaseBundle\Controller\MenuController
+        arguments:
+            - @templating
+            - @ezpublish.api.service.location
+            - @sf.standard.menu.service
+    
+    sf.standard.menu.service:
+        class: Styleflasher\eZPlatformBaseBundle\Services\MenuService
+        arguments:
+            - @ezpublish.api.service.location
+            - @ezpublish.api.service.content
+            - @ezpublish.api.service.search
+            - @sf.standard.sortClause.service
+            - @ezpublish.config.resolver
+
+    sf.standard.widget.controller:
+        class: Styleflasher\eZPlatformBaseBundle\Controller\WidgetController
+        arguments:
+            - @templating
+            - @ezpublish.api.service.location
+            - @sf.standard.widget.service
+
+    sf.standard.widget.service:
+        class: Styleflasher\eZPlatformBaseBundle\Services\WidgetService
+        arguments:
+            - @ezpublish.api.service.location
+            - @ezpublish.api.service.content
+            - @ezpublish.api.service.search
+            - @sf.standard.sortClause.service
+            - @ezpublish.config.resolver
+    
+    sf.standard.sortClause.service:
+        class: Styleflasher\eZPlatformBaseBundle\Services\SortClauseService
+
     # Criterion Generators
     sf.ezp_base.criterion.child:
         class: %sf.ezp_base.criterion.child.class%
