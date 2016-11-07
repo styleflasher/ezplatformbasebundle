@@ -1,0 +1,34 @@
+#################################
+## Template for Bundlesettings ##
+#################################
+system:
+    site_group:
+        sujets:
+            fallback_container_location_id: 2
+            sujetclasses: []
+        menu:
+            has_submenu: true
+            levels: 2
+            main:
+                classes:
+                    - folder
+                excluded_location_ids: []
+            sub:
+                classes:
+                    - folder
+                excluded_location_ids: []
+        right_column:
+            social_media:
+                show: false
+                facebook: 'http://www.facebook.com'
+                twitter: 'http://www.twitter.com'
+                linkedin: 'http://www.linkedin.com'
+            widgets:
+                show: true
+                classes: []
+            additional_menu_level:
+                show: true
+                depth: 4
+                classes:
+                   - folder
+                excluded_location_ids: []
