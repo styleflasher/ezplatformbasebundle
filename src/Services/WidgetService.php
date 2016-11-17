@@ -10,7 +10,6 @@ use eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeIdentifi
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalAnd;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\ParentLocationId;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Visibility;
-use Symfony\Bundle\TwigBundle\TwigEngine;
 
 class WidgetService
 {

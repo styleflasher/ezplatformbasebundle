@@ -3,7 +3,6 @@
 namespace Styleflasher\eZPlatformBaseBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\TwigBundle\TwigEngine;
 use eZ\Publish\API\Repository\LocationService;
 use Styleflasher\eZPlatformBaseBundle\Services\SujetService;
 
@@ -15,7 +14,7 @@ class SujetController
     protected $sujetService;
 
     public function __construct(
-        TwigEngine $templating,
+        $templating,
         LocationService $locationService,
         SujetService $sujetService
     ) {

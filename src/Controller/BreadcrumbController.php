@@ -3,7 +3,6 @@
 namespace Styleflasher\eZPlatformBaseBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\TwigBundle\TwigEngine;
 use eZ\Publish\API\Repository\LocationService;
 
 class BreadcrumbController
@@ -14,7 +13,7 @@ class BreadcrumbController
     protected $configResolver;
 
     public function __construct(
-        TwigEngine $templating,
+        $templating,
         LocationService $locationService,
         $configResolver
     ) {

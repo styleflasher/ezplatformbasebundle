@@ -3,7 +3,6 @@
 namespace Styleflasher\eZPlatformBaseBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\TwigBundle\TwigEngine;
 use eZ\Publish\API\Repository\LocationService;
 use Styleflasher\eZPlatformBaseBundle\Services\MenuService;
 
@@ -15,7 +14,7 @@ class MenuController
     protected $menuService;
 
     public function __construct(
-        TwigEngine $templating,
+        $templating,
         LocationService $locationService,
         MenuService $menuService
     ) {
