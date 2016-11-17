@@ -7,15 +7,13 @@ system:
             fallback_container_location_id: 2
             sujetclasses: []
         menu:
-            has_submenu: true
+            has_submenu: false
             levels: 2
             main:
-                classes:
-                    - folder
+                classes: []
                 excluded_location_ids: []
             sub:
-                classes:
-                    - folder
+                classes: []
                 excluded_location_ids: []
         right_column:
             social_media:
@@ -24,10 +22,10 @@ system:
                 twitter: 'http://www.twitter.com'
                 linkedin: 'http://www.linkedin.com'
             widgets:
-                show: true
+                show: false
                 classes: []
             additional_menu_level:
-                show: true
+                show: false
                 depth: 4
                 classes:
                    - folder
