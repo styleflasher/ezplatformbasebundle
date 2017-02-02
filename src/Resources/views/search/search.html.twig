@@ -1,0 +1,29 @@
+{% extends 'pagelayout.html.twig' %}
+
+{% block content %}
+    <div class="col-sm-8 primary-content">
+        <h1>{{ 'Search'|trans }}</h1>
+        <div class="row">
+            <div class="col-sm-12">
+            <form>
+                <div class="form-group">
+                    <label for=full-view-search-field">{{ 'Search phrase'|trans }}</label>
+                    <input type="text" class="form-control" name="q" id="full-view-search-field" value="{{ q }}">
+                </div>
+                <button type="submit" class="btn btn-default">{{ 'Submit'|trans }}</button>
+            </form>
+            <p></p>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+
+            <div class="searchresults">
+                {% for result in results %}
+                    {{ render( controller( 'ez_content:viewLocation', { 'locationId': result.versionInfo.contentInfo.mainLocationId, 'viewType': 'line' } )) }}
+                {% endfor %}
+            </div></div>
+        </div>
+        {{ pagerfanta(results, 'twitter_bootstrap3', {'routeName': '/search', 'prev_message': 'Letzte', 'next_message': 'Nächste'} ) }}
+    </div>
+{% endblock %}
