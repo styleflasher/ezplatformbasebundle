@@ -22,6 +22,9 @@
                 {% for result in results %}
                     {{ render( controller( 'ez_content:viewLocation', { 'locationId': result.versionInfo.contentInfo.mainLocationId, 'viewType': 'line' } )) }}
                 {% endfor %}
+                {% if not results.nbResults %}
+                    {{'No results found.'|trans}}
+                {% endif%}
             </div></div>
         </div>
         {{ pagerfanta(results, 'twitter_bootstrap3', {'routeName': '/search', 'prev_message': 'Letzte', 'next_message': 'Nächste'} ) }}

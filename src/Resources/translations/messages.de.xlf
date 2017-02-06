@@ -8,6 +8,10 @@
                 <source>Submit</source> <target state="translated">Abschicken</target> </trans-unit>
             <trans-unit id="Search phrase" approved="yes">
                 <source>Search phrase</source> <target state="translated">Suchbegriff</target> </trans-unit>
+            <trans-unit id="No results found.">
+                <source>No results found.</source>
+                <target>Keine Resultate gefunden.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
