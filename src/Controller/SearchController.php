@@ -15,10 +15,10 @@ class SearchController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $params['results'] = [];
+        $pager = null;
+        $searchCount = 0;
         $repository = $this->container->get('ezpublish.api.repository');
         $queryString= $request->query->get('q');
-        $params['q'] = $queryString;
         if ($queryString) {
             $searchService = $repository->getSearchService();
             $query = new Query();
@@ -36,9 +36,13 @@ class SearchController extends Controller
             $limit = 10;
             $pager->setMaxPerPage($limit);
             $pager->setCurrentPage($request->get('page', 1));
-            $params['results'] = $pager;
+            $searchCount = $pager->getNbResults();
         }
 
-        return $this->render('StyleflashereZPlatformBaseBundle:search:search.html.twig', $params);
+        return $this->render('StyleflashereZPlatformBaseBundle:search:search.html.twig', array(
+            'q' => $queryString,
+            'searchCount' => $searchCount,
+            'results' => $pager
+        ));
     }
 }
