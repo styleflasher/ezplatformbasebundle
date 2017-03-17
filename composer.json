@@ -1,6 +1,6 @@
 {
     "name": "styleflasher/ezplatformbasebundle",
-    "description": "Base Bundle for eZ Publish v5",
+    "description": "Base Bundle for eZ Publish v5/ezPlatform",
     "license": "GPL-3.0",
     "authors": [
         {
@@ -8,7 +8,14 @@
             "email": "rene.hrdina@styleflasher.at"
         }
     ],
-    "require": {},
+    "require": {
+        "twig/extensions": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.5.*",
+        "phpmd/phpmd" : "@stable",
+        "squizlabs/php_codesniffer": "2.*"
+    },
     "autoload": {
         "psr-4": { "Styleflasher\\eZPlatformBaseBundle\\": "src/" }
     }
