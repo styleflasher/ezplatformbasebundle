@@ -70,20 +70,20 @@ services:
             - @ezpublish.api.service.search
             - @sf.standard.sortClause.service
             - @ezpublish.config.resolver
-    
+
     sf.standard.sortClause.service:
         class: Styleflasher\eZPlatformBaseBundle\Services\SortClauseService
 
     # Criterion Generators
     sf.ezp_base.criterion.child:
         class: %sf.ezp_base.criterion.child.class%
-    
+
     sf.ezp_base.criterion.compound:
         class: %sf.ezp_base.criterion.compound.class%
-        
+
     sf.ezp_base.criterion.field:
         class: %sf.ezp_base.criterion.field.class%
-    
+
     sf.ezp_base.controller.fetch_children:
         class: %sf.ezp_base.controller.fetch_children.class%
         arguments:
@@ -93,81 +93,81 @@ services:
             - @ezpublish.config.resolver
             - @sf.ezp_base.criterion.child
             - @sf.ezp_base.sort_clause.location_priority.desc
-    
+
     # Sort Clause Generators
     sf.ezp_base.sort_clause.location_priority:
         class: %sf.ezp_base.sort_clause.location_priority.class%
         abstract: true
-        
+
     sf.ezp_base.sort_clause.location_priority.asc:
         parent: sf.ezp_base.sort_clause.location_priority
         calls:
             - [setSortDirection, ['asc']]
-        
+
     sf.ezp_base.sort_clause.location_priority.desc:
         parent: sf.ezp_base.sort_clause.location_priority
         calls:
             - [setSortDirection, ['desc']]
-    
+
     sf.ezp_base.sort_clause.date_published:
         class: %sf.ezp_base.sort_clause.date_published.class%
         abstract: true
-    
+
     sf.ezp_base.sort_clause.date_published.asc:
         parent: sf.ezp_base.sort_clause.date_published
         calls:
             - [setSortDirection, ['asc']]
-        
+
     sf.ezp_base.sort_clause.date_published.desc:
         parent: sf.ezp_base.sort_clause.date_published
         calls:
             - [setSortDirection, ['desc']]
-            
+
     sf.ezp_base.sort_clause.content_name:
         class: %sf.ezp_base.sort_clause.content_name.class%
         abstract: true
-        
+
     sf.ezp_base.sort_clause.content_name.asc:
         parent: sf.ezp_base.sort_clause.content_name
         calls:
             - [setSortDirection, ['asc']]
-        
+
     sf.ezp_base.sort_clause.content_name.desc:
         parent: sf.ezp_base.sort_clause.content_name
         calls:
             - [setSortDirection, ['desc']]
-            
+
     sf.ezp_base.sort_clause.backend_value:
         class: %sf.ezp_base.sort_clause.backend_value.class%
-            
+
     # Value Providers
-    
+
     sf.ezp_base.value_provider.fixed:
         class: %sf.ezp_base.value_provider.fixed.class%
-    
+
     sf.ezp_base.value_provider.date.today:
         class: %sf.ezp_base.value_provider.date.today.class%
-        
+
     sf.ezp_base.value_provider.date.tomorrow:
         class: %sf.ezp_base.value_provider.date.tomorrow.class%
-        
+
     sf.ezp_base.value_provider.date.yesterday:
         class: %sf.ezp_base.value_provider.date.yesterday.class%
-        
+
     # Example Criteria
     # example child criterion for 'news' class
     #sf.vivomondo.criterion.child.news:
     #    parent: sf.ezp_base.criterion.child
     #    calls:
     #        - [setChildContentTypeIdentifiers, [['news']]]
-            
+
     # Example sort Clause Generators
     #sf.vivomondo.sort_clause.news_date:
     #    class: %sf.ezp_base.sort_clause.field_value.class%
-    #    arguments: 
+    #    arguments:
     #        - 'news'
     #        - 'anzeigen_ab'
-    
+
     # Example controller with custom criterion and sort clause generatorss
     #sf.vivomondo.controller.fetch_children.news:
     #    parent: sf.ezp_base.controller.fetch_children
@@ -175,10 +175,8 @@ services:
     #        - [setCriterionGenerator, [@sf.vivomondo.criterion.child.news]]
     #        - [setSortClauseGenerator, [@sf.vivomondo.sort_clause.news_date]]
     #        - [setLimit, [10]]
-    
 
-    app.twig_extension:
+    youtube.twig_extension:
         class: Styleflasher\eZPlatformBaseBundle\Twig\YoutubeExtension
-        public: false
         tags:
             - { name: twig.extension }
