@@ -28,13 +28,19 @@ class MenuController
         $template = 'StyleflashereZPlatformBaseBundle:components:topmenu.html.twig'
     ) {
 
-        $location =  $this->locationService->loadLocation( $locationId );
+        $location = $this->locationService->loadLocation($locationId);
         $menu = $this->menuService->generateTopmenu($location);
+        $path = explode('/', $location->pathString);
+        array_shift($path);
+        array_pop($path);
 
         return $this->templating->renderResponse(
-            $template, [
+            $template,
+            [
                 'menu' => $menu,
-            ], new Response()
+                'path' => $path
+            ],
+            new Response()
         );
     }
 }
