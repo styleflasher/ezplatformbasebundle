@@ -15,6 +15,11 @@ class Configuration extends SiteAccessConfiguration
 
         $systemNode = $this->generateScopeBaseNode( $rootNode );
         $systemNode
+            ->arrayNode( 'search' )
+                ->children()
+                    ->scalarNode( 'searchresult_view' )->defaultFalse()->end()
+                ->end()
+            ->end()
             ->arrayNode( 'sujets' )
                 ->children()
                     ->integerNode( 'fallback_container_location_id' )->end()

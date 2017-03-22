@@ -33,6 +33,8 @@ class StyleflashereZPlatformBaseExtension extends Extension implements PrependEx
         $processor->mapConfig(
             $config,
             function ( $scopeSettings, $currentScope, $contextualizer ) {
+                $contextualizer->setContextualParameter( 'search.searchresult_view', $currentScope, $scopeSettings['search']['searchresult_view'] );
+
                 $contextualizer->setContextualParameter( 'sujets.fallback_container_location_id', $currentScope, $scopeSettings['sujets']['fallback_container_location_id'] );
                 $contextualizer->setContextualParameter( 'sujets.sujetclasses', $currentScope, $scopeSettings['sujets']['sujetclasses'] );
 

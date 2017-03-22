@@ -20,7 +20,7 @@
                 <div class="searchresults">
                     {% if searchCount > 0 %}
                         {% for result in results %}
-                            {{ render( controller( 'ez_content:viewLocation', { 'locationId': result.versionInfo.contentInfo.mainLocationId, 'viewType': 'line' } )) }}
+                            {{ render( controller( 'ez_content:viewLocation', { 'locationId': result.versionInfo.contentInfo.mainLocationId, 'viewType': viewType } )) }}
                         {% endfor %}
                     {{ pagerfanta(results, 'twitter_bootstrap3', {'routeName': 'styleflasher_ezplatform_base_search', 'prev_message': 'Letzte', 'next_message': 'Nächste'} ) }}
                     {% else %}

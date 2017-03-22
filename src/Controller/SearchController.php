@@ -18,6 +18,10 @@ class SearchController extends Controller
         $pager = null;
         $searchCount = 0;
         $repository = $this->container->get('ezpublish.api.repository');
+        $configResolver = $this->container->get('ezpublish.config.resolver');
+
+        $viewType = $configResolver->getParameter('search.searchresult_view', 'styleflashere_z_platform_base');
+
         $queryString= $request->query->get('q');
         if ($queryString) {
             $searchService = $repository->getSearchService();
@@ -42,6 +46,7 @@ class SearchController extends Controller
         return $this->render('StyleflashereZPlatformBaseBundle:search:search.html.twig', array(
             'q' => $queryString,
             'searchCount' => $searchCount,
+            'viewType' => $viewType,
             'results' => $pager
         ));
     }
