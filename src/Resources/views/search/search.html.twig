@@ -24,7 +24,9 @@
                         {% endfor %}
                     {{ pagerfanta(results, 'twitter_bootstrap3', {'routeName': 'styleflasher_ezplatform_base_search', 'prev_message': 'Letzte', 'next_message': 'Nächste'} ) }}
                     {% else %}
+                    <div class="alert alert-danger" role="alert">
                         {{'No results found.'|trans}}
+                    </div>
                     {% endif%}
                 </div>
             </div>
