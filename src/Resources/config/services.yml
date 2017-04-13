@@ -140,6 +140,13 @@ services:
     sf.ezp_base.sort_clause.backend_value:
         class: %sf.ezp_base.sort_clause.backend_value.class%
 
+    sf.ezp_base.sort_clause.field_value:
+        class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\FieldValue
+        abstract: true
+        calls:
+            - [setSortDirection, ['asc']]
+            - [setRepository, [@ezpublish.api.repository]]
+
     # Value Providers
 
     sf.ezp_base.value_provider.fixed:
@@ -163,12 +170,12 @@ services:
 
     # Example sort Clause Generators
     #sf.mybundle.sort_clause.news_date:
-    #    class: %sf.ezp_base.sort_clause.field_value.class%
+    #    parent: sf.ezp_base.sort_clause.field_value
     #    arguments:
     #        - 'news'   #content type identifier
     #        - 'start_date' # field identifier
-    #        - 'ascending'  # or 'descending' which is default
-    #        - false # use false for untranslateable fields, default is true
+    #    calls:
+    #        - [setSortDirection, ['desc']]
 
     # Example controller with custom criterion and sort clause generatorss
     #sf.mybundle.controller.fetch_children.news:
