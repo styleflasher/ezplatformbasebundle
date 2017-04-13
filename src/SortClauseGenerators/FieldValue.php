@@ -33,24 +33,31 @@ class FieldValue extends SortClause
 {
     /** @var string */
     protected $contentTypeIdentifier;
-    
+
     /** @var string */
     protected $fieldIdentifier;
-    
-    public function __construct($contentTypeIdentifier, $fieldIdentifier, $sortDirection = LocationQuery::SORT_DESC)
+
+    /** $var boolean */
+    protected $translateable;
+
+    public function __construct($contentTypeIdentifier, $fieldIdentifier, $sortDirection = LocationQuery::SORT_DESC, $translateable = true)
     {
         $this->contentTypeIdentifier = $contentTypeIdentifier;
         $this->fieldIdentifier = $fieldIdentifier;
         $this->setSortDirection($sortDirection);
+        $this->translateable = $translateable;
     }
-    
+
     public function generateSortClauses($location, $languages) {
-        
+
         $language = empty($languages) ? $location->contentInfo->mainLanguageCode : $languages[0];
-        
+        if ($this->translateable !== true) {
+            $language = null;
+        }
+
         return [
             new Field($this->contentTypeIdentifier, $this->fieldIdentifier, $this->sortDirection, $language)
         ];
     }
-    
+
 }

@@ -12,7 +12,7 @@ parameters:
     sf.ezp_base.value_provider.date.today.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Today
     sf.ezp_base.value_provider.date.tomorrow.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Tomorrow
     sf.ezp_base.value_provider.date.yesterday.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Yesterday
-    
+
     sf.ezp_base.location_service.class: Styleflasher\eZPlatformBaseBundle\eZ\Publish\Core\Repository\LocationService
 
 services:
@@ -22,7 +22,7 @@ services:
             - @templating
             - @ezpublish.api.service.location
             - @ezpublish.config.resolver
-    
+
     sf.standard.sujet.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\SujetController
         arguments:
@@ -38,14 +38,14 @@ services:
             - @ezpublish.api.service.search
             - @sf.standard.sortClause.service
             - @ezpublish.config.resolver
-            
+
     sf.standard.menu.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\MenuController
         arguments:
             - @templating
             - @ezpublish.api.service.location
             - @sf.standard.menu.service
-    
+
     sf.standard.menu.service:
         class: Styleflasher\eZPlatformBaseBundle\Services\MenuService
         arguments:
@@ -156,24 +156,26 @@ services:
 
     # Example Criteria
     # example child criterion for 'news' class
-    #sf.vivomondo.criterion.child.news:
+    #sf.mybundle.criterion.child.news:
     #    parent: sf.ezp_base.criterion.child
     #    calls:
     #        - [setChildContentTypeIdentifiers, [['news']]]
 
     # Example sort Clause Generators
-    #sf.vivomondo.sort_clause.news_date:
+    #sf.mybundle.sort_clause.news_date:
     #    class: %sf.ezp_base.sort_clause.field_value.class%
     #    arguments:
-    #        - 'news'
-    #        - 'anzeigen_ab'
+    #        - 'news'   #content type identifier
+    #        - 'start_date' # field identifier
+    #        - 'ascending'  # or 'descending' which is default
+    #        - false # use false for untranslateable fields, default is true
 
     # Example controller with custom criterion and sort clause generatorss
-    #sf.vivomondo.controller.fetch_children.news:
+    #sf.mybundle.controller.fetch_children.news:
     #    parent: sf.ezp_base.controller.fetch_children
     #    calls:
-    #        - [setCriterionGenerator, [@sf.vivomondo.criterion.child.news]]
-    #        - [setSortClauseGenerator, [@sf.vivomondo.sort_clause.news_date]]
+    #        - [setCriterionGenerator, [@sf.mybundle.criterion.child.news]]
+    #        - [setSortClauseGenerator, [@sf.mybundle.sort_clause.news_date]]
     #        - [setLimit, [10]]
 
     youtube.twig_extension:

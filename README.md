@@ -1,3 +1,3 @@
 # ezplatformbasebundle
 
-Base bundle for ezplatform projects
+Base bundle for ezpublish 5 and ezplatform projects.
