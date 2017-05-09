@@ -15,7 +15,7 @@ class YoutubeExtension extends \Twig_Extension
     {
         $youtubeId = $this->youtubeIdFilter($url);
         return "https://youtube.com/embed/".$youtubeId."?autoplay=".
-            $autoplay."&controls=".$controls."&showinfo=".$showinfo;
+            $autoplay."&controls=".$controls;
     }
 
     public function youtubeIdFilter($url)
