@@ -38,7 +38,8 @@ class MenuController
             $template,
             [
                 'menu' => $menu,
-                'path' => $path
+                'path' => $path,
+                'location' => $location
             ],
             new Response()
         );
