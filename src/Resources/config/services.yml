@@ -5,9 +5,11 @@ parameters:
     sf.ezp_base.controller.fetch_children.class: Styleflasher\eZPlatformBaseBundle\Controller\FetchController
     sf.ezp_base.sort_clause.location_priority.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\LocationPriority
     sf.ezp_base.sort_clause.date_published.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\DatePublished
+    sf.ezp_base.sort_clause.date_modified.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\DateModified
     sf.ezp_base.sort_clause.content_name.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\ContentName
     sf.ezp_base.sort_clause.field_value.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\FieldValue
     sf.ezp_base.sort_clause.backend_value.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\BackendValue
+    sf.ezp_base.sort_clause.composite.class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\Composite
     sf.ezp_base.value_provider.fixed.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Fixed
     sf.ezp_base.value_provider.date.today.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Today
     sf.ezp_base.value_provider.date.tomorrow.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Tomorrow
@@ -92,7 +94,7 @@ services:
             - @ezpublish.api.service.location
             - @ezpublish.config.resolver
             - @sf.ezp_base.criterion.child
-            - @sf.ezp_base.sort_clause.location_priority.desc
+            - @sf.ezp_base.sort_clause.backend_value
 
     # Sort Clause Generators
     sf.ezp_base.sort_clause.location_priority:
@@ -146,6 +148,27 @@ services:
         calls:
             - [setSortDirection, ['asc']]
             - [setRepository, [@ezpublish.api.repository]]
+    sf.ezp_base.sort_clause.composite:
+        class: %sf.ezp_base.sort_clause.composite.class%
+        arguments:
+            - @ezpublish.config.resolver
+        #example class
+        #    calls:
+        #       - [addSortClauseGenerators, [[@sf.ezp_base.sort_clause.location_priority.desc, @sf.ezp_base.sort_clause.backend_value]]]
+        #
+    sf.ezp_base.sort_clause.date_modified:
+        class: %sf.ezp_base.sort_clause.date_modified.class%
+        abstract: true
+
+    sf.ezp_base.sort_clause.date_modified.asc:
+        parent: sf.ezp_base.sort_clause.date_modified
+        calls:
+            - [setSortDirection, ['asc']]
+
+    sf.ezp_base.sort_clause.date_modified.desc:
+        parent: sf.ezp_base.sort_clause.date_modified
+        calls:
+            - [setSortDirection, ['desc']]
 
     # Value Providers
 
