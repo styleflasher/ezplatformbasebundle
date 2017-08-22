@@ -151,9 +151,9 @@ if [ -n "$files" ]; then
 fi
 
 #run unit tests
-output=`vendor/bin/phpunit --bootstrap=vendor/autoload.php src/Tests | grep 'Errors:'`
+output=`vendor/bin/phpunit --bootstrap=vendor/autoload.php src/Tests | grep 'failures'`
 if [ -n "$output" ]; then
-     echo "unit tests failed $output"
+     echo "Unit tests failed. $output"
      errors=("${errors[@]}" "$output")
 fi
 

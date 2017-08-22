@@ -34,15 +34,15 @@ class YoutubeExtensionTest extends TestCase
         return [
             [
                 'https://www.youtube.com/watch?v=Mzg8QJJTix',
-                'https://youtube.com/embed/Mzg8QJJTix?autoplay=0&controls=1&showinfo=0&autohide=1'
+                'https://www.youtube.com/embed/Mzg8QJJTix?autoplay=0&controls=1'
             ],
             [
                 'https://youtu.be/oC1nCKGDSes',
-                'https://youtube.com/embed/oC1nCKGDSes?autoplay=0&controls=1&showinfo=0&autohide=1'
+                'https://www.youtube.com/embed/oC1nCKGDSes?autoplay=0&controls=1'
             ],
             [
                 'https://www.youtube.com/watch?v=oC1nCKGDSes&feature=youtu.be',
-                'https://youtube.com/embed/oC1nCKGDSes?autoplay=0&controls=1&showinfo=0&autohide=1'
+                'https://www.youtube.com/embed/oC1nCKGDSes?autoplay=0&controls=1'
             ]
         ];
     }
