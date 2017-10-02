@@ -25,5 +25,13 @@ styleflashersearch:
     resource: "@StyleflashereZPlatformBaseBundle/Resources/config/routing.yml"
 `
 
-Now you can access the route "/serach". Use "q" as GET parameter.
+Now you can access the route "/search". Use "q" as GET parameter. By default the search controller uses the line view templates.
+
+The templates can be changed by changing the searchresult_view parameter:
+`
+system:
+    site_group:
+        search:
+            searchresult_view: 'search'
+`
 
