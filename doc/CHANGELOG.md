@@ -11,3 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added a default template for the search route.
 - Added documentation about the search configuratation.
 - Added changelog.md file.
+
+## [1.2.7] - 2017-10-03
+### Added
+- Added SEO controller and its templates including documentation.
+- Added dependency to german backend translation bundle ezplatform-i18n/ezplatform-i18n-de_de.

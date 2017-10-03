@@ -1,0 +1,25 @@
+parameters:
+    seo:
+        general:
+            standardString: lorem ipsum
+            rootNode: 2
+            max_length:
+                title: 70
+                keywords: 170
+                description: 170
+        default:
+            meta_bausteine:
+                keywords:
+                    0: lorem ipsum
+                    1: lorem ipsum
+                description:
+                    0: lorem ipsum
+                    1: lorem ipsum
+        eng-GB:
+            meta_bausteine:
+                keywords:
+                    0: lorem ipsum
+                    1: lorem ipsum
+                description:
+                    0: lorem ipsum
+                    1: lorem ipsum

@@ -35,3 +35,41 @@ system:
             searchresult_view: 'search'
 `
 
+## SEO
+
+Insert the following snippet into you <head> tag:
+
+```twig
+{% if location is defined %}
+    {{render(
+        controller(
+            "seofunctions:getseohead", {
+                'locationid': location.id,
+                'bundle': 'styleflasherezplatformbasebundle',
+                'layout': 'seo'
+            }
+        )
+    )}}
+{% endif %}
+```
+
+Copy src/Resources/config/seo_settings.template.yml to app/config/seo_settings.yml. 
+
+Import the file in your config.yml:
+
+```yml
+imports:
+    - { resource: seo_settings.yml }
+```
+
+Modfiy your settings in seo_settings.yml for your needs.
+
+Add the following fields to your content types (all fields are optional):
+
+* meta_title (text line)
+* meta_keywords (textline)
+* meta_description (textline)
+* meta_canonical_link (textline)
+* meta_nofollow (checkbox)
+
+If you have multiple languages, make shure that all languages are mentionend in the settings.

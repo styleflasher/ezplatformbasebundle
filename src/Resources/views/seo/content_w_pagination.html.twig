@@ -1,0 +1,11 @@
+<div>
+    <ul>
+    {% for folder in pagerFolder %}
+        <li>{{ ez_content_name( folder ) }}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+<div class="pagerfanta">
+    {% if pagerFolder.haveToPaginate() %}{{ pagerfanta( pagerFolder, 'twitter_bootstrap_translated', {'routeName': location} ) }}{% endif %}
+</div>

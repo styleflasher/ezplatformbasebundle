@@ -1,0 +1,24 @@
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}"/>
+<meta name="keywords" content="{{ keywords }}"/>
+{% if canonical_link != false %}
+    {% if canonical_extern == true %}
+        <link rel="canonical" href="{{ canonical_link }}" />
+    {% else %}
+        <link rel="canonical" href="{{ app.request.getSchemeAndHttpHost() ~ asset(canonical_link) }}" />
+    {% endif %}
+{% endif %}
+{% if nofollow == true %}
+    <meta name="robots" content="noindex,nofollow" />
+{% else %}
+    <meta name="robots" content="index,follow" />
+{% endif %}
+{% if hreflang != false %}
+    {% for hreflanglink in hreflang %}
+        {% if hreflanglink.alternativedomain == true %}
+            <link rel="alternate" href="{{ hreflanglink.link }}" hreflang="{{ hreflanglink.sprachcode }}" />
+        {% else %}
+            <link rel="alternate" href="{{ app.request.getSchemeAndHttpHost() ~ asset(hreflanglink.link) }}" hreflang="{{ hreflanglink.sprachcode }}" />
+        {% endif %}
+    {% endfor %}
+{% endif %}

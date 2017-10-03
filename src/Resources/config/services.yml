@@ -212,3 +212,11 @@ services:
         class: Styleflasher\eZPlatformBaseBundle\Twig\YoutubeExtension
         tags:
             - { name: twig.extension }
+
+    seo_functions.controller:
+        class: Styleflasher\eZPlatformBaseBundle\Controller\SEOController
+        arguments: [@ezpublish.view_manager]
+        calls:
+            - [setContainer, [@service_container]]
+    seoFunctions:
+        alias: seo_functions.controller

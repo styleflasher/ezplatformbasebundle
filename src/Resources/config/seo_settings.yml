@@ -1,0 +1,26 @@
+parameters:
+    seo:
+        general:
+            enable_hreflang: false
+            rootNode: 2
+            max_length:
+                title: 70
+                keywords: 170
+                description: 245
+        default:
+            meta_components:
+                keywords:
+                    0: Keyword1
+                    1: keyword2
+                description:
+                    0: my description
+        ger-DE:
+            standardString: myProject
+            alternative-domain: false
+            hreflang-sprachcode: de-de
+            meta_components:
+                keywords:
+                    0: keyword1
+                    1: keyword2
+                description:
+                    0: my description
