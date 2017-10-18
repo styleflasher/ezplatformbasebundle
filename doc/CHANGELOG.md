@@ -16,3 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Added SEO controller and its templates including documentation.
 - Added dependency to german backend translation bundle ezplatform-i18n/ezplatform-i18n-de_de.
+
+## [1.2.8] - 
+### Deprecated
+- SEOController: use https://github.com/Novactive/NovaeZSEOBundle instead

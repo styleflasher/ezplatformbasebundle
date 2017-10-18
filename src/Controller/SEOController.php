@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use eZ\Bundle\EzPublishCoreBundle\Controller;
 
 /**
+ * DEPRECATED: USE https://github.com/Novactive/NovaeZSEOBundle
  * TODO: yml configs should be per siteaccess. add unit tests, refactor a lot.
  * @SuppressWarnings(PHPMD)
  */
