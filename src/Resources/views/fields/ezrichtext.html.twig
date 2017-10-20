@@ -1,0 +1,16 @@
+{# The simple_block_field block is a shorthand html block-based fields (like eztext or ezrichtext) #}
+{# You can define a field_value variable before rendering this one if you need special operation for rendering content (i.e. nl2br) #}
+{% block simple_block_field %}
+{% spaceless %}
+    {% if field_value is not defined %}
+        {% set field_value = field.value %}
+    {% endif %}
+    <div {{ block( 'field_attributes' ) }}>
+        {% endspaceless %}{{ field_value|raw }}{% spaceless %}
+    </div>
+{% endspaceless %}
+{% endblock %}
+{% block ezrichtext_field %}
+    {%- set field_value = field.value.xml|richtext_to_html5|obfuscateEmail -%}
+    {{ block( 'simple_block_field' ) }}
+{% endblock %}
