@@ -5,6 +5,7 @@ system:
     site_group:
         search:
             searchresult_view: 'line'
+            wildcard: true
         sujets:
             fallback_container_location_id: 2
             sujetclasses: []

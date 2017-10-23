@@ -41,6 +41,11 @@ class StyleflashereZPlatformBaseExtension extends Extension implements PrependEx
                     $currentScope,
                     $scopeSettings['search']['searchresult_view']
                 );
+                $contextualizer->setContextualParameter(
+                    'search.wildcard',
+                    $currentScope,
+                    $scopeSettings['search']['wildcard']
+                );
 
                 $contextualizer->setContextualParameter(
                     'sujets.fallback_container_location_id',
@@ -150,5 +155,6 @@ class StyleflashereZPlatformBaseExtension extends Extension implements PrependEx
         $stfConfig = Yaml::parse(file_get_contents($stfConfigFile));
         $container->prependExtensionConfig('styleflashere_z_platform_base', $stfConfig);
         $container->addResource(new FileResource($stfConfigFile));
+
     }
 }

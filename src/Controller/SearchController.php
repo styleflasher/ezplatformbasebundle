@@ -23,6 +23,11 @@ class SearchController extends Controller
         $viewType = $configResolver->getParameter('search.searchresult_view', 'styleflashere_z_platform_base');
 
         $queryString= $request->query->get('q');
+
+        $wildcard = $configResolver->getParameter('search.wildcard', 'styleflashere_z_platform_base');
+        if ($wildcard === true) {
+            $queryString .="*";
+        }
         if ($queryString) {
             $searchService = $repository->getSearchService();
             $query = new Query();

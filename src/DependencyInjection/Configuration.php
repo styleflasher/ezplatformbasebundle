@@ -18,6 +18,7 @@ class Configuration extends SiteAccessConfiguration
             ->arrayNode( 'search' )
                 ->children()
                     ->scalarNode( 'searchresult_view' )->defaultFalse()->end()
+                    ->scalarNode( 'wildcard' )->defaultTrue()->end()
                 ->end()
             ->end()
             ->arrayNode( 'sujets' )
