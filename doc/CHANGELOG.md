@@ -20,3 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.2.8] - 
 ### Deprecated
 - SEOController: use https://github.com/Novactive/NovaeZSEOBundle instead
+
+## [1.2.9] - 
+### Added
+- Wildcard can be configured in search controller.
