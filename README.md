@@ -17,7 +17,7 @@ Base bundle for ezpublish 5 and ezplatform projects.
 
 [Documentation](doc/README.md)
 
-[Installation](doc/INSTALLATION.md)
+[Installation](doc/INSTALL.md)
 
 [Changelog](doc/CHANGELOG.md)
 

@@ -220,3 +220,8 @@ services:
             - [setContainer, [@service_container]]
     seoFunctions:
         alias: seo_functions.controller
+
+    obfuscateemail.twig_extension:
+        class: \Propaganistas\EmailObfuscator\Twig\Extension
+        tags:
+            - { name: twig.extension }

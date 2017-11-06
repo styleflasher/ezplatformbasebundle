@@ -24,3 +24,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.2.9] - 
 ### Added
 - Wildcard can be configured in search controller.
+
+## [1.2.10] - 
+### Added
+- E-mail obfuscator twig filter
+- formatted README.md
