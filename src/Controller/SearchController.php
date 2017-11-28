@@ -22,18 +22,19 @@ class SearchController extends Controller
 
         $viewType = $configResolver->getParameter('search.searchresult_view', 'styleflashere_z_platform_base');
 
-        $queryString= $request->query->get('q');
+        $queryString = $request->query->get('q');
+        $searchString = $queryString;
 
         $wildcard = $configResolver->getParameter('search.wildcard', 'styleflashere_z_platform_base');
         if ($wildcard === true) {
-            $queryString .="*";
+            $searchString .="*";
         }
-        if ($queryString) {
+        if ($searchString) {
             $searchService = $repository->getSearchService();
             $query = new Query();
             $query->filter = new Criterion\LogicalAnd(
                 array(
-                    new Criterion\FullText($queryString),
+                    new Criterion\FullText($searchString),
                     new Criterion\Visibility(Criterion\Visibility::VISIBLE),
                     new Criterion\LanguageCode(array('ger-DE'), true),
                 )
