@@ -99,3 +99,21 @@ The filter returns the full youtube url that can be used in an iframe.
 DEPRECATED: USE https://github.com/Novactive/NovaeZSEOBundle
 ~~Insert the following snippet into you <head> tag:~~
 
+## Redirect of Contentblock to parent with a full view
+Usage in views.yml:
+
+```yaml
+ezpublish:
+    system:
+        default:
+            content_view:
+                full:
+                    contentblock_general:
+                        controller: sf.standard.contentblock_redirect.controller:redirectToParentAction
+                        params:
+                            displayableContentTypeIdentifiers:
+                                - identifier_of_contenttype_with_an_actual_full_view
+                        match:
+                            Identifier\ContentType:
+                                - identifier_of_block_element
+```

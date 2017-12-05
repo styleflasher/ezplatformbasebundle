@@ -18,6 +18,13 @@ parameters:
     sf.ezp_base.location_service.class: Styleflasher\eZPlatformBaseBundle\eZ\Publish\Core\Repository\LocationService
 
 services:
+    sf.standard.contentblock_redirect.controller:
+        class: Styleflasher\eZPlatformBaseBundle\Controller\ContentblockRedirectController
+        arguments:
+            - '@ezpublish.api.service.location'
+            - '@ezpublish.api.service.search'
+            - '@ezpublish.api.service.url_alias'
+
     sf.standard.breadcrumb.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\BreadcrumbController
         arguments:
