@@ -28,57 +28,57 @@ services:
     sf.standard.breadcrumb.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\BreadcrumbController
         arguments:
-            - @templating
-            - @ezpublish.api.service.location
-            - @ezpublish.config.resolver
+            - '@templating'
+            - '@ezpublish.api.service.location'
+            - '@ezpublish.config.resolver'
 
     sf.standard.sujet.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\SujetController
         arguments:
-            - @templating
-            - @ezpublish.api.service.location
-            - @sf.standard.sujet.service
+            - '@templating'
+            - '@ezpublish.api.service.location'
+            - '@sf.standard.sujet.service'
 
     sf.standard.sujet.service:
         class: Styleflasher\eZPlatformBaseBundle\Services\SujetService
         arguments:
-            - @ezpublish.api.service.location
-            - @ezpublish.api.service.content
-            - @ezpublish.api.service.search
-            - @sf.standard.sortClause.service
-            - @ezpublish.config.resolver
+            - '@ezpublish.api.service.location'
+            - '@ezpublish.api.service.content'
+            - '@ezpublish.api.service.search'
+            - '@sf.standard.sortClause.service'
+            - '@ezpublish.config.resolver'
 
     sf.standard.menu.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\MenuController
         arguments:
-            - @templating
-            - @ezpublish.api.service.location
-            - @sf.standard.menu.service
+            - '@templating'
+            - '@ezpublish.api.service.location'
+            - '@sf.standard.menu.service'
 
     sf.standard.menu.service:
         class: Styleflasher\eZPlatformBaseBundle\Services\MenuService
         arguments:
-            - @ezpublish.api.service.location
-            - @ezpublish.api.service.content
-            - @ezpublish.api.service.search
-            - @sf.standard.sortClause.service
-            - @ezpublish.config.resolver
+            - '@ezpublish.api.service.location'
+            - '@ezpublish.api.service.content'
+            - '@ezpublish.api.service.search'
+            - '@sf.standard.sortClause.service'
+            - '@ezpublish.config.resolver'
 
     sf.standard.widget.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\WidgetController
         arguments:
-            - @templating
-            - @ezpublish.api.service.location
-            - @sf.standard.widget.service
+            - '@templating'
+            - '@ezpublish.api.service.location'
+            - '@sf.standard.widget.service'
 
     sf.standard.widget.service:
         class: Styleflasher\eZPlatformBaseBundle\Services\WidgetService
         arguments:
-            - @ezpublish.api.service.location
-            - @ezpublish.api.service.content
-            - @ezpublish.api.service.search
-            - @sf.standard.sortClause.service
-            - @ezpublish.config.resolver
+            - '@ezpublish.api.service.location'
+            - '@ezpublish.api.service.content'
+            - '@ezpublish.api.service.search'
+            - '@sf.standard.sortClause.service'
+            - '@ezpublish.config.resolver'
 
     sf.standard.sortClause.service:
         class: Styleflasher\eZPlatformBaseBundle\Services\SortClauseService
@@ -96,12 +96,12 @@ services:
     sf.ezp_base.controller.fetch_children:
         class: %sf.ezp_base.controller.fetch_children.class%
         arguments:
-            - @ez_content
-            - @ezpublish.api.service.search
-            - @ezpublish.api.service.location
-            - @ezpublish.config.resolver
-            - @sf.ezp_base.criterion.child
-            - @sf.ezp_base.sort_clause.backend_value
+            - '@ez_content'
+            - '@ezpublish.api.service.search'
+            - '@ezpublish.api.service.location'
+            - '@ezpublish.config.resolver'
+            - '@sf.ezp_base.criterion.child'
+            - '@sf.ezp_base.sort_clause.backend_value'
 
     # Sort Clause Generators
     sf.ezp_base.sort_clause.location_priority:
@@ -154,11 +154,11 @@ services:
         abstract: true
         calls:
             - [setSortDirection, ['asc']]
-            - [setRepository, [@ezpublish.api.repository]]
+            - [setRepository, ['@ezpublish.api.repository']]
     sf.ezp_base.sort_clause.composite:
         class: %sf.ezp_base.sort_clause.composite.class%
         arguments:
-            - @ezpublish.config.resolver
+            - '@ezpublish.config.resolver'
         #example class
         #    calls:
         #       - [addSortClauseGenerators, [[@sf.ezp_base.sort_clause.location_priority.desc, @sf.ezp_base.sort_clause.backend_value]]]
@@ -222,9 +222,10 @@ services:
 
     seo_functions.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\SEOController
-        arguments: [@ezpublish.view_manager]
+        arguments: 
+            - '@ezpublish.view_manager'
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ['@service_container']]
     seoFunctions:
         alias: seo_functions.controller
 
