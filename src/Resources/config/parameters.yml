@@ -1,6 +1,4 @@
 parameters:
-    ezsettings.default.content_view_defaults:
-        search:
-            default:
-                template: "StyleflashereZPlatformBaseBundle:content/view:search.html.twig"
-                match: []
+    ezsettings.default.content_view_defaults.search.default:
+        template: "StyleflashereZPlatformBaseBundle:content/view:search.html.twig"
+        match: []
