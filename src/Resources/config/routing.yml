@@ -1,4 +1,4 @@
 styleflasher_ezplatform_base_search:
-    path:     /search
+    path:     /sfsearch
     defaults: { _controller: StyleflashereZPlatformBaseBundle:Search:index }
     methods: [GET]
