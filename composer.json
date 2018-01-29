@@ -1,7 +1,7 @@
 {
     "name": "styleflasher/ezplatformbasebundle",
     "description": "Base Bundle for eZ Publish v5/ezPlatform",
-    "license": "GPL-3.0",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "René Hrdina",
