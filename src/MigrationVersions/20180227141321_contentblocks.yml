@@ -33,7 +33,7 @@
     content_type_group: Flexible-Layout
     lang: ger-DE
     name: Galerie
-    identifier: contentblock_galerie
+    identifier: contentblock_gallery
     name_pattern: <headline>
     is_container: false
     attributes:

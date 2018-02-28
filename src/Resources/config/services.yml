@@ -21,7 +21,7 @@ services:
     sf.standard.fetch_contentblock.general:
         parent: sf.ezp_base.criterion.child
         calls:
-            - [setChildContentTypeIdentifiers, [['contentblock_text', 'contentblock_textimage', 'contentblock_imagetext', 'contentblock_youtube', 'contentblock_download', 'contentblock_quicklink']]]
+            - [setChildContentTypeIdentifiers, [['contentblock_text', 'contentblock_textimage', 'contentblock_imagetext', 'contentblock_youtube', 'contentblock_download', 'contentblock_quicklink', 'contentblock_gallery']]]
     sf.standard.fetch_contentblock:
         parent: sf.ezp_base.controller.fetch_children
         calls:
