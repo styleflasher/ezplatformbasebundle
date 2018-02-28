@@ -1,21 +1,23 @@
-<div class="row contentblock-distance-xs">
-    <div class="col-xs-12">
-        {% if not ez_is_field_empty( content, "btn_link_internal" ) %}
-            <a href="{{ path( "ez_urlalias", {"contentId": ez_field_value(content, 'btn_link_internal')} ) }}" class="contentblock-panel">
-        {% else %}
-            <a href="{{ ez_field_value(content, 'btn_link_external') }}" class="contentblock-panel" target="_blank">
-        {% endif %}
-            <div class="contentblock-panel-icon">
-                <i class="fa fa-link" aria-hidden="true"></i>
-            </div>
-            <div class="contentblock-panel-text">
-                <div>
-                    {{ ez_field_value(content, 'headline') }}
-                    {% if not ez_is_field_empty( content, "btn_link_external" ) %}
-                        <div class="contentblock-panel-text-small">{{ ez_field_value(content, 'btn_link_external') }}</div>
-                    {% endif %}
+<div class="contentblock-distance-xs">
+    <div class="row">
+        <div class="col-xs-12">
+            {% if not ez_is_field_empty( content, "btn_link_internal" ) %}
+                <a href="{{ path( "ez_urlalias", {"contentId": ez_field_value(content, 'btn_link_internal')} ) }}" class="contentblock-panel">
+            {% else %}
+                <a href="{{ ez_field_value(content, 'btn_link_external') }}" class="contentblock-panel" target="_blank">
+            {% endif %}
+                <div class="contentblock-panel-icon">
+                    <i class="fa fa-link" aria-hidden="true"></i>
                 </div>
-            </div>
-        </a>
+                <div class="contentblock-panel-text">
+                    <div>
+                        {{ ez_field_value(content, 'headline') }}
+                        {% if not ez_is_field_empty( content, "btn_link_external" ) %}
+                            <div class="contentblock-panel-text-small">{{ ez_field_value(content, 'btn_link_external') }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
