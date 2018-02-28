@@ -1,0 +1,9 @@
+filter_sets:
+    contentblockimg:
+        filters:
+            upscale: { min: [360, 240] }
+            thumbnail: { size: [360, 240], mode: outbound }
+    fullHD:
+        filters:
+            upscale: { min: [1920] }
+            thumbnail: { size: [1920], mode: outbound }

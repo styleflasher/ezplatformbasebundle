@@ -210,30 +210,23 @@
             type: ezstring
             position: 1
         -
-            name: Text
-            identifier: text
-            required: false
-            searchable: false
-            type: ezrichtext
-            position: 2
-        -
             name: Button Titel
             identifier: btn_title
             required: true
             searchable: false
             type: ezstring
-            position: 3
+            position: 2
         -
             name: Button Link intern
             identifier: btn_link_internal
             required: false
             searchable: false
             type: ezobjectrelation
-            position: 4
+            position: 3
         -
             name: Button Link extern
             identifier: btn_link_external
             required: false
             searchable: false
             type: ezstring
-            position: 5
+            position: 4

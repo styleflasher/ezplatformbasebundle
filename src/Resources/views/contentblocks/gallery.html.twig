@@ -1,0 +1,14 @@
+{% if children is defined and children|length > 0 %}
+    <div class="contentblock-distance contentblock-text">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="contentblock-headline">{{ ez_field_value(content, 'headline') }}</h3>
+                <div class="contentblock-gallery js-contentblock-lightgallery row">
+                    {% for child in children %}
+                        {{ render( controller( "ez_content:viewLocation", {"locationId": child.id, "viewType": "contentblock"} ) ) }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

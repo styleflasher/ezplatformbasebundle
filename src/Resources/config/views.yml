@@ -1,0 +1,46 @@
+ezpublish:
+    system:
+        site_group:
+            content_view:
+                contentblock:
+                    download:
+                        template: 'StyleflashereZPlatformBaseBundle:contentblocks:download.html.twig'
+                        match:
+                            Identifier\ContentType:
+                                - contentblock_download
+                    gallery:
+                        template: 'StyleflashereZPlatformBaseBundle:contentblocks:gallery.html.twig'
+                        controller: sf.ezp_base.controller.fetch_children:getChildNodesAction
+                        match:
+                            Identifier\ContentType:
+                                - contentblock_galerie
+                    imagetext:
+                        template: 'StyleflashereZPlatformBaseBundle:contentblocks:imagetext.html.twig'
+                        match:
+                            Identifier\ContentType:
+                                - contentblock_imagetext
+                    textimage:
+                        template: 'StyleflashereZPlatformBaseBundle:contentblocks:textimage.html.twig'
+                        match:
+                            Identifier\ContentType:
+                                - contentblock_textimage
+                    text:
+                        template: 'StyleflashereZPlatformBaseBundle:contentblocks:text.html.twig'
+                        match:
+                            Identifier\ContentType:
+                                - contentblock_text
+                    quicklink:
+                        template: 'StyleflashereZPlatformBaseBundle:contentblocks:quicklink.html.twig'
+                        match:
+                            Identifier\ContentType:
+                                - contentblock_quicklink
+                    youtube:
+                        template: 'StyleflashereZPlatformBaseBundle:contentblocks:youtube.html.twig'
+                        match:
+                            Identifier\ContentType:
+                                - contentblock_youtube
+                    image:
+                        template: 'StyleflashereZPlatformBaseBundle:contentblocks:image.html.twig'
+                        match:
+                            Identifier\ContentType:
+                                - image
