@@ -14,16 +14,11 @@ ezpublish:
                         match:
                             Identifier\ContentType:
                                 - contentblock_gallery
-                    imagetext:
-                        template: 'StyleflashereZPlatformBaseBundle:contentblocks:imagetext.html.twig'
-                        match:
-                            Identifier\ContentType:
-                                - contentblock_imagetext
                     textimage:
                         template: 'StyleflashereZPlatformBaseBundle:contentblocks:textimage.html.twig'
                         match:
                             Identifier\ContentType:
-                                - contentblock_textimage
+                                - contentblock_text_w_image
                     text:
                         template: 'StyleflashereZPlatformBaseBundle:contentblocks:text.html.twig'
                         match:

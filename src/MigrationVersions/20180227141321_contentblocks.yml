@@ -35,7 +35,7 @@
     name: Galerie
     identifier: contentblock_gallery
     name_pattern: <headline>
-    is_container: false
+    is_container: true
     attributes:
         -
             name: Überschrift
@@ -44,13 +44,20 @@
             searchable: true
             type: ezstring
             position: 1
+        -
+            name: Überschrift ausblenden
+            identifier: hide_headline
+            required: false
+            searchable: true
+            type: ezboolean
+            position: 2
 -
     mode: 'create'
     type: 'content_type'
     content_type_group: Flexible-Layout
     lang: ger-DE
-    name: Bild Links / Text Rechts
-    identifier: contentblock_imagetext
+    name: Text mit Bild
+    identifier: contentblock_text_w_image
     name_pattern: <headline>
     is_container: false
     attributes:
@@ -62,50 +69,33 @@
             type: ezstring
             position: 1
         -
-            name: Text
-            identifier: text
-            required: true
+            name: Überschrift ausblenden
+            identifier: hide_headline
+            required: false
             searchable: true
-            type: ezrichtext
+            type: ezboolean
             position: 2
-        -
-            name: Bild
-            identifier: image
-            required: true
-            searchable: false
-            type: ezimage
-            position: 3
--
-    mode: 'create'
-    type: 'content_type'
-    content_type_group: Flexible-Layout
-    lang: ger-DE
-    name: Text Links / Bild Rechts
-    identifier: contentblock_textimage
-    name_pattern: <headline>
-    is_container: false
-    attributes:
-        -
-            name: Überschrift
-            identifier: headline
-            required: true
-            searchable: true
-            type: ezstring
-            position: 1
         -
             name: Text
             identifier: text
             required: true
             searchable: true
             type: ezrichtext
-            position: 2
+            position: 3
         -
             name: Bild
             identifier: image
             required: true
             searchable: false
             type: ezimage
-            position: 3
+            position: 4
+        -
+            name: Bild rechts
+            identifier: image_right
+            required: false
+            searchable: true
+            type: ezboolean
+            position: 5
 -
     mode: 'create'
     type: 'content_type'
@@ -124,50 +114,19 @@
             type: ezstring
             position: 1
         -
+            name: Überschrift ausblenden
+            identifier: hide_headline
+            required: false
+            searchable: true
+            type: ezboolean
+            position: 2
+        -
             name: Text
             identifier: text
             required: true
             searchable: true
             type: ezrichtext
-            position: 2
--
-    mode: 'create'
-    type: 'content_type'
-    content_type_group: Flexible-Layout
-    lang: ger-DE
-    name: Text Icon
-    identifier: contentblock_texticon
-    name_pattern: <headline>
-    is_container: false
-    attributes:
-        -
-            name: Überschrift
-            identifier: headline
-            required: true
-            searchable: true
-            type: ezstring
-            position: 1
-        -
-            name: Icon (SVG)
-            identifier: icon_svg
-            required: false
-            searchable: false
-            type: ezbinaryfile
-            position: 2
-        -
-            name: Icon (JPG / PNG)
-            identifier: icon_graphic
-            required: false
-            searchable: false
-            type: ezimage
             position: 3
-        -
-            name: Text
-            identifier: text
-            required: false
-            searchable: true
-            type: ezrichtext
-            position: 4
 -
     mode: 'create'
     type: 'content_type'
@@ -186,12 +145,19 @@
             type: ezstring
             position: 1
         -
+            name: Überschrift ausblenden
+            identifier: hide_headline
+            required: false
+            searchable: true
+            type: ezboolean
+            position: 2
+        -
             name: Youtube ID
             identifier: youtube_id
             required: true
             searchable: false
             type: ezstring
-            position: 2
+            position: 3
 -
     mode: 'create'
     type: 'content_type'

@@ -1,5 +1,5 @@
-$contentblock-distance: 60px;
-$contentblock-distance-xs: $contentblock-distance / 2;
+$contentblock-distance: $grid-gutter-width * 2;
+$contentblock-distance-xs: $grid-gutter-width;
 $contentblock-highlight-color: $color-secondary;
 
 $contentblock-text-font-size: 1.8rem;
