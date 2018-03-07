@@ -1,7 +1,7 @@
 {
   "name": "ezplatformbasebundle",
   "version": "1.0.0",
-  "description": "StyleflashereZPlatformBaseBundle ================================",
+  "description": "StyleflashereZPlatformBaseBundle",
   "main": "index.js",
   "directories": {
     "doc": "doc"
