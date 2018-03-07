@@ -103,12 +103,12 @@ php bin/console kaliop:migration:migrate
 ```
 
 Add this to view.yml
-```
+```yaml
 imports:
    - { resource: "@StyleflashereZPlatformBaseBundle/Resources/config/views.yml" }
 ```
 Add this to app.scss after importing all node modules
-```
+```scss
 @import '../../../../vendor/styleflasher/ezplatformbasebundle/src/Resources/public/scss/contentblocks/main';
 ```
 > use SCSS variables to override color and space, not CSS.....
