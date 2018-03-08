@@ -18,6 +18,17 @@ parameters:
     sf.ezp_base.location_service.class: Styleflasher\eZPlatformBaseBundle\eZ\Publish\Core\Repository\LocationService
 
 services:
+    sf.standard.fetch_contentblock.general:
+        parent: sf.ezp_base.criterion.child
+        calls:
+            - [setChildContentTypeIdentifiers, [['contentblock_text', 'contentblock_text_w_image', 'contentblock_youtube', 'contentblock_download', 'contentblock_quicklink', 'contentblock_gallery']]]
+    sf.standard.fetch_contentblock:
+        parent: sf.ezp_base.controller.fetch_children
+        calls:
+            - [setSortClauseGenerator, ['@sf.ezp_base.sort_clause.backend_value']]
+            - [setCriterionGenerator, ['@sf.standard.fetch_contentblock.general']]
+            - [setLimit, [30]]
+
     sf.standard.contentblock_redirect.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\ContentblockRedirectController
         arguments:

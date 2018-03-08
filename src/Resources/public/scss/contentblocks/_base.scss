@@ -1,0 +1,10 @@
+.contentblock-distance {
+    margin-top: $contentblock-distance;
+    @media (max-width: $screen-sm-max) {
+        margin-top: $contentblock-distance-xs;
+    }
+
+    &-xs {
+        margin-top: $contentblock-distance-xs;
+    }
+}
