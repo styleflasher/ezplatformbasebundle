@@ -66,6 +66,11 @@ services:
             - '@ezpublish.api.service.location'
             - '@sf.standard.menu.service'
 
+    sf.standard.controller.do_not_track:
+        class: Styleflasher\eZPlatformBaseBundle\Controller\DoNotTrackController
+        arguments:
+            - '@templating'
+
     sf.standard.menu.service:
         class: Styleflasher\eZPlatformBaseBundle\Services\MenuService
         arguments:
