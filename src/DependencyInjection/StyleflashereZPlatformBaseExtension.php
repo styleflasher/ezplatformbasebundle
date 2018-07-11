@@ -46,6 +46,11 @@ class StyleflashereZPlatformBaseExtension extends Extension implements PrependEx
                     $currentScope,
                     $scopeSettings['search']['wildcard']
                 );
+                $contextualizer->setContextualParameter(
+                    'search.limit',
+                    $currentScope,
+                    $scopeSettings['search']['limit']
+                );
 
                 $contextualizer->setContextualParameter(
                     'sujets.fallback_container_location_id',
@@ -157,8 +162,8 @@ class StyleflashereZPlatformBaseExtension extends Extension implements PrependEx
         $container->addResource(new FileResource($stfConfigFile));
 
         $configFile = __DIR__ . '/../Resources/config/image.yml';
-        $config = Yaml::parse( file_get_contents( $configFile ) );
-        $container->prependExtensionConfig( 'liip_imagine', $config );
-        $container->addResource( new FileResource( $configFile ) );
+        $config = Yaml::parse(file_get_contents($configFile));
+        $container->prependExtensionConfig('liip_imagine', $config);
+        $container->addResource(new FileResource($configFile));
     }
 }

@@ -19,6 +19,7 @@ class Configuration extends SiteAccessConfiguration
                 ->children()
                     ->scalarNode( 'searchresult_view' )->defaultFalse()->end()
                     ->scalarNode( 'wildcard' )->defaultTrue()->end()
+                    ->integerNode( 'limit' )->defaultValue(10)->end()
                 ->end()
             ->end()
             ->arrayNode( 'sujets' )
