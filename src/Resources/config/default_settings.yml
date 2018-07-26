@@ -6,6 +6,7 @@ system:
         search:
             searchresult_view: 'line'
             wildcard: true
+            limit: 10
         sujets:
             fallback_container_location_id: 2
             sujetclasses: []

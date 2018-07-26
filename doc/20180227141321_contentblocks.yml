@@ -1,0 +1,191 @@
+-
+    mode: 'create'
+    type: 'content_type_group'
+    lang: ger-DE
+    identifier: Flexible-Layout
+-
+    mode: 'create'
+    type: 'content_type'
+    content_type_group: Flexible-Layout
+    lang: ger-DE
+    name: Download
+    identifier: contentblock_download
+    name_pattern: <headline>
+    is_container: false
+    attributes:
+        -
+            name: Überschrift
+            identifier: headline
+            required: true
+            searchable: true
+            type: ezstring
+            position: 1
+        -
+            name: Datei
+            identifier: file
+            required: true
+            searchable: false
+            type: ezbinaryfile
+            position: 2
+-
+    mode: 'create'
+    type: 'content_type'
+    content_type_group: Flexible-Layout
+    lang: ger-DE
+    name: Galerie
+    identifier: contentblock_gallery
+    name_pattern: <headline>
+    is_container: true
+    attributes:
+        -
+            name: Überschrift
+            identifier: headline
+            required: true
+            searchable: true
+            type: ezstring
+            position: 1
+        -
+            name: Überschrift ausblenden
+            identifier: hide_headline
+            required: false
+            searchable: true
+            type: ezboolean
+            position: 2
+-
+    mode: 'create'
+    type: 'content_type'
+    content_type_group: Flexible-Layout
+    lang: ger-DE
+    name: Text mit Bild
+    identifier: contentblock_text_w_image
+    name_pattern: <headline>
+    is_container: false
+    attributes:
+        -
+            name: Überschrift
+            identifier: headline
+            required: true
+            searchable: true
+            type: ezstring
+            position: 1
+        -
+            name: Überschrift ausblenden
+            identifier: hide_headline
+            required: false
+            searchable: true
+            type: ezboolean
+            position: 2
+        -
+            name: Text
+            identifier: text
+            required: true
+            searchable: true
+            type: ezrichtext
+            position: 3
+        -
+            name: Bild
+            identifier: image
+            required: true
+            searchable: false
+            type: ezimage
+            position: 4
+        -
+            name: Bild rechts
+            identifier: image_right
+            required: false
+            searchable: true
+            type: ezboolean
+            position: 5
+-
+    mode: 'create'
+    type: 'content_type'
+    content_type_group: Flexible-Layout
+    lang: ger-DE
+    name: Text
+    identifier: contentblock_text
+    name_pattern: <headline>
+    is_container: false
+    attributes:
+        -
+            name: Überschrift
+            identifier: headline
+            required: true
+            searchable: true
+            type: ezstring
+            position: 1
+        -
+            name: Überschrift ausblenden
+            identifier: hide_headline
+            required: false
+            searchable: true
+            type: ezboolean
+            position: 2
+        -
+            name: Text
+            identifier: text
+            required: true
+            searchable: true
+            type: ezrichtext
+            position: 3
+-
+    mode: 'create'
+    type: 'content_type'
+    content_type_group: Flexible-Layout
+    lang: ger-DE
+    name: Youtube Video
+    identifier: contentblock_youtube
+    name_pattern: <headline>
+    is_container: false
+    attributes:
+        -
+            name: Überschrift
+            identifier: headline
+            required: true
+            searchable: true
+            type: ezstring
+            position: 1
+        -
+            name: Überschrift ausblenden
+            identifier: hide_headline
+            required: false
+            searchable: true
+            type: ezboolean
+            position: 2
+        -
+            name: Youtube ID
+            identifier: youtube_id
+            required: true
+            searchable: false
+            type: ezstring
+            position: 3
+-
+    mode: 'create'
+    type: 'content_type'
+    content_type_group: Flexible-Layout
+    lang: ger-DE
+    name: Quicklink
+    identifier: contentblock_quicklink
+    name_pattern: <headline>
+    is_container: false
+    attributes:
+        -
+            name: Überschrift
+            identifier: headline
+            required: true
+            searchable: true
+            type: ezstring
+            position: 1
+        -
+            name: Button Link intern
+            identifier: btn_link_internal
+            required: false
+            searchable: false
+            type: ezobjectrelation
+            position: 2
+        -
+            name: Button Link extern
+            identifier: btn_link_external
+            required: false
+            searchable: false
+            type: ezstring
+            position: 3

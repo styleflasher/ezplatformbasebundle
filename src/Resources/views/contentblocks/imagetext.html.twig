@@ -1,0 +1,19 @@
+{% if ez_field_value( content, "hide_headline" ) == '1' %}
+    <div class="contentblock-distance-xs contentblock-text">
+{% else %}
+    <div class="contentblock-distance contentblock-text">
+{% endif %}
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            {{ ez_render_field(content, 'image', { "parameters": {"alias": "contentblockimg"} } ) }}
+        </div>
+        <div class="col-md-8 col-sm-6 col-xs-12">
+            {% if ez_field_value( content, "hide_headline" ) == '0' %}
+                <h3 class="contentblock-headline">{{ ez_field_value(content, 'headline') }}</h3>
+            {% endif %}
+            <div class="contentblock-text">
+                {{ ez_render_field(content, 'text') }}
+            </div>
+        </div>
+    </div>
+</div>

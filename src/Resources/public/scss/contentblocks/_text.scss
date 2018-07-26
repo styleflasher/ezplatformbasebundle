@@ -1,0 +1,22 @@
+.contentblock-text {
+    .contentblock-headline {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: $contentblock-headline-font-size;
+        color: $contentblock-headline-color;
+    }
+
+    .contentblock-text {
+        p {
+            font-size: $contentblock-text-font-size;
+        }
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        @media (max-width: $screen-sm-max) {
+            margin-bottom: 25px;
+        }
+    }
+}
