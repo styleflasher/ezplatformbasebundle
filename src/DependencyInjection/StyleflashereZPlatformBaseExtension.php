@@ -36,6 +36,13 @@ class StyleflashereZPlatformBaseExtension extends Extension implements PrependEx
         $processor->mapConfig(
             $config,
             function ($scopeSettings, $currentScope, $contextualizer) {
+
+                $contextualizer->setContextualParameter(
+                    'redirect_to_child',
+                    $currentScope,
+                    $scopeSettings['redirect_to_child']
+                );
+
                 $contextualizer->setContextualParameter(
                     'search.searchresult_view',
                     $currentScope,
@@ -160,7 +167,6 @@ class StyleflashereZPlatformBaseExtension extends Extension implements PrependEx
         $stfConfig = Yaml::parse(file_get_contents($stfConfigFile));
         $container->prependExtensionConfig('styleflashere_z_platform_base', $stfConfig);
         $container->addResource(new FileResource($stfConfigFile));
-
         $configFile = __DIR__ . '/../Resources/config/image.yml';
         $config = Yaml::parse(file_get_contents($configFile));
         $container->prependExtensionConfig('liip_imagine', $config);

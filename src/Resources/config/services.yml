@@ -29,6 +29,16 @@ services:
             - [setCriterionGenerator, ['@sf.standard.fetch_contentblock.general']]
             - [setLimit, [30]]
 
+    sf.standard.redirect.controller:
+        class: Styleflasher\eZPlatformBaseBundle\Controller\RedirectController
+        arguments:
+            - '@ezpublish.api.service.content'
+            - '@ezpublish.api.service.content_type'
+            - '@ezpublish.api.service.location'
+            - '@ezpublish.api.service.search'
+            - '@ezpublish.config.resolver'
+            - '@router'
+
     sf.standard.contentblock_redirect.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\ContentblockRedirectController
         arguments:
