@@ -1,0 +1,8 @@
+{
+    "*.{php,yml}": [
+        "./runphpcbf.sh --standard=PSR2 --extensions=php,yml --encoding=utf-8",
+        "git add",
+        "phpcs --standard=PSR2 --extensions=php,yml --encoding=utf8",
+        "./runphpmd.sh",
+    ],
+}
