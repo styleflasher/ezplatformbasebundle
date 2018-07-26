@@ -6,12 +6,15 @@ use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\SearchService;
+use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalAnd;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Visibility;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeIdentifier;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\ParentLocationId;
+use eZ\Publish\Core\MVC\Symfony\Routing\ChainRouter;
+use Symfony\Cmf\Component\Routing\ChainRouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -26,7 +29,8 @@ class RedirectController {
         LocationService $locationService,
         SearchService $searchService,
         ContainerInterface $container,
-        $configResolver
+        $configResolver,
+        ChainRouterInterface $router
     ) {
         $this->contentService = $contentService;
         $this->contentTypeService = $contentTypeService;
@@ -34,13 +38,14 @@ class RedirectController {
         $this->searchService = $searchService;
         $this->container = $container;
         $this->configResolver = $configResolver;
+        $this->router = $router;
 
         return $this;
     }
 
     public function redirectToDefinedLocation(GetResponseEvent $event)
     {
-        if ( $event->getRequestType() == HttpKernelInterface::MASTER_REQUEST ) {
+        if ($event->getRequestType() == HttpKernelInterface::MASTER_REQUEST ) {
             $request = $event->getRequest();
             $locationId = $request->attributes->get('locationId');
             $requestAttributes = $request->attributes;
@@ -51,8 +56,8 @@ class RedirectController {
                 $currentContent = $this->contentService->loadContentByContentInfo($currentLocation->contentInfo);
 
                 if ( array_key_exists( 'redirect_to' , $currentContent->fields ) && ($currentContent->getFieldValue('redirect_to')->destinationContentId != NULL) && ($currentContent->getFieldValue('redirect_to')->destinationContentId != '')) {
-                    $redirectContent = $this->contentService->loadContent($currentContent->getFieldValue('redirect_to_child'));
-                    $this->redirectByContentInfo($redirectContent->contentInfo, $event);
+                    $redirectContent = $this->contentService->loadContent($currentContent->getFieldValue('redirect_to'));
+                    $this->redirectByContent($redirectContent, $event);
                 }
                 elseif ( array_key_exists( 'redirect_to_child' , $currentContent->fields ) && $currentContent->getFieldValue('redirect_to_child') == '1') {
                     $this->redirectToFirstChild($event);
@@ -71,19 +76,22 @@ class RedirectController {
         $redirectCandidates = $this->getRedirectToChildrenCandidates($location->contentInfo);
 
         $criteria = [
-            new ContentTypeIdentifier($redirectCandidates),
             new Visibility(Visibility::VISIBLE),
             new ParentLocationId($location->id)
         ];
+
+        if(!empty($redirectCandidates)) {
+            $criteria[] = new ContentTypeIdentifier($redirectCandidates);
+        }
 
         $query = new LocationQuery();
         $query->query = new LogicalAnd($criteria);
         $query->sortClauses = $parentLocation->getSortClauses();
 
-        $blogItemsResult = $this->searchService->findLocations($query);
+        $candidatesResult = $this->searchService->findLocations($query);
 
-        if(count($blogItemsResult->searchHits) > 0) {
-            $this->redirectByContentInfo($blogItemsResult->searchHits[0]->valueObject->contentInfo, $event);
+        if(count($candidatesResult->searchHits) > 0) {
+            $this->redirectByLocation($candidatesResult->searchHits[0]->valueObject, $event);
         }
     }
 
@@ -91,18 +99,30 @@ class RedirectController {
     {
         $candidates = $this->configResolver->getParameter('redirect_to_child', 'styleflashere_z_platform_base');
 
-        $countCandidates = count($candidates);
-
-        if(intval($countCandidates) > 0) {
+        if (!empty($countCandidates)) {
             $contentType = $this->contentTypeService->loadContentType($contentInfo->contentTypeId);
 
             return $candidates[$contentType->identifier];
         }
+
+        return [];
     }
 
-    protected function redirectByContentInfo(ContentInfo $contentInfo, $event) {
-        $redirectLocation = $this->locationService->loadLocation($contentInfo->mainLocationId);
-        $path = $this->container->get( 'router' )->generate( $redirectLocation );
+    protected function redirectByLocation(Location $location, $event) {
+        $path = $this->router->generate($location);
+
+        $event->setResponse(
+            new RedirectResponse(
+                $path,
+                302
+            )
+        );
+        $event->stopPropagation();
+    }
+
+    protected function redirectByContent(Content $content, $event) {
+        $location = $this->locationService->loadLocation($content->contentInfo->mainLocationId);
+        $path = $this->router->generate($location);
 
         $event->setResponse(
             new RedirectResponse(
