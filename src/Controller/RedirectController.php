@@ -105,7 +105,7 @@ class RedirectController
     {
         $candidates = $this->configResolver->getParameter('redirect_to_child', 'styleflashere_z_platform_base');
 
-        if (!empty(count($candidates))) {
+        if (!empty($candidates)) {
             $contentType = $this->contentTypeService->loadContentType($contentInfo->contentTypeId);
 
             return $candidates[$contentType->identifier];
