@@ -2,12 +2,14 @@
 
 namespace Styleflasher\eZPlatformBaseBundle\Controller;
 
+use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ChainConfigResolver;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\SearchService;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
+use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalAnd;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Visibility;
@@ -28,15 +30,13 @@ class RedirectController {
         ContentTypeService $contentTypeService,
         LocationService $locationService,
         SearchService $searchService,
-        ContainerInterface $container,
-        $configResolver,
+        ChainConfigResolver $configResolver,
         ChainRouterInterface $router
     ) {
         $this->contentService = $contentService;
         $this->contentTypeService = $contentTypeService;
         $this->locationService = $locationService;
         $this->searchService = $searchService;
-        $this->container = $container;
         $this->configResolver = $configResolver;
         $this->router = $router;
 
