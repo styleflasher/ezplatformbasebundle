@@ -15,6 +15,11 @@ class Configuration extends SiteAccessConfiguration
 
         $systemNode = $this->generateScopeBaseNode( $rootNode );
         $systemNode
+            ->arrayNode('redirect_to_child')
+                ->prototype('array')
+                    ->prototype('scalar')->end()
+                ->end()
+            ->end()
             ->arrayNode( 'search' )
                 ->children()
                     ->scalarNode( 'searchresult_view' )->defaultFalse()->end()
