@@ -22,8 +22,11 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-
-class RedirectController {
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
+class RedirectController
+{
 
     public function __construct(
         ContentService $contentService,
@@ -45,21 +48,24 @@ class RedirectController {
 
     public function redirectToDefinedLocation(GetResponseEvent $event)
     {
-        if ($event->getRequestType() == HttpKernelInterface::MASTER_REQUEST ) {
+        if ($event->getRequestType() == HttpKernelInterface::MASTER_REQUEST) {
             $request = $event->getRequest();
             $locationId = $request->attributes->get('locationId');
             $requestAttributes = $request->attributes;
             $siteaccess = $requestAttributes->get('siteaccess')->name;
 
-            if ($siteaccess != 'admin' && $locationId != NULL) {
-                $currentLocation = $this->locationService->loadLocation( $locationId );
+            if ($siteaccess != 'admin' && $locationId != null) {
+                $currentLocation = $this->locationService->loadLocation($locationId);
                 $currentContent = $this->contentService->loadContentByContentInfo($currentLocation->contentInfo);
+                $redirectToChild = $currentContent->getFieldValue('redirect_to_child');
+                $redirectTo = $currentContent->getFieldValue('redirect_to');
 
-                if ( array_key_exists( 'redirect_to' , $currentContent->fields ) && ($currentContent->getFieldValue('redirect_to')->destinationContentId != NULL) && ($currentContent->getFieldValue('redirect_to')->destinationContentId != '')) {
-                    $redirectContent = $this->contentService->loadContent($currentContent->getFieldValue('redirect_to'));
+                if (array_key_exists('redirect_to', $currentContent->fields) &&
+                    ($currentContent->getFieldValue('redirect_to')->destinationContentId != null) &&
+                    ($currentContent->getFieldValue('redirect_to')->destinationContentId != '')) {
+                    $redirectContent = $this->contentService->loadContent($redirectTo);
                     $this->redirectByContent($redirectContent, $event);
-                }
-                elseif ( array_key_exists( 'redirect_to_child' , $currentContent->fields ) && $currentContent->getFieldValue('redirect_to_child') == '1') {
+                } elseif (array_key_exists('redirect_to_child', $currentContent->fields) && $redirectToChild == '1') {
                     $this->redirectToFirstChild($event);
                 }
             }
@@ -80,7 +86,7 @@ class RedirectController {
             new ParentLocationId($location->id)
         ];
 
-        if(!empty($redirectCandidates)) {
+        if (!empty($redirectCandidates)) {
             $criteria[] = new ContentTypeIdentifier($redirectCandidates);
         }
 
@@ -90,7 +96,7 @@ class RedirectController {
 
         $candidatesResult = $this->searchService->findLocations($query);
 
-        if(count($candidatesResult->searchHits) > 0) {
+        if (count($candidatesResult->searchHits) > 0) {
             $this->redirectByLocation($candidatesResult->searchHits[0]->valueObject, $event);
         }
     }
@@ -99,7 +105,7 @@ class RedirectController {
     {
         $candidates = $this->configResolver->getParameter('redirect_to_child', 'styleflashere_z_platform_base');
 
-        if (!empty($countCandidates)) {
+        if (!empty(count($candidates))) {
             $contentType = $this->contentTypeService->loadContentType($contentInfo->contentTypeId);
 
             return $candidates[$contentType->identifier];
@@ -108,7 +114,8 @@ class RedirectController {
         return [];
     }
 
-    protected function redirectByLocation(Location $location, $event) {
+    protected function redirectByLocation(Location $location, $event)
+    {
         $path = $this->router->generate($location);
 
         $event->setResponse(
@@ -120,7 +127,8 @@ class RedirectController {
         $event->stopPropagation();
     }
 
-    protected function redirectByContent(Content $content, $event) {
+    protected function redirectByContent(Content $content, $event)
+    {
         $location = $this->locationService->loadLocation($content->contentInfo->mainLocationId);
         $path = $this->router->generate($location);
 

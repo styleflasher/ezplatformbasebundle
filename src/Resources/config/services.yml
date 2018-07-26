@@ -36,8 +36,8 @@ services:
             - '@ezpublish.api.service.content_type'
             - '@ezpublish.api.service.location'
             - '@ezpublish.api.service.search'
-            - "@service_container"
             - '@ezpublish.config.resolver'
+            - '@router'
 
     sf.standard.contentblock_redirect.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\ContentblockRedirectController
