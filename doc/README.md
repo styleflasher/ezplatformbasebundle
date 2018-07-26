@@ -93,7 +93,26 @@ ezpublish:
 {{'https://www.youtube.com/watch?v=myyoutubeidblaba'|youtube}}
 ```
 
-The filter returns the full youtube url that can be used in an iframe.
+## Contentblock
+
+####Migration:
+if you want to use the migration move the Contentblock migration from doc to src/MigrationsVersions
+####Then run:
+```
+php bin/console kaliop:migration:migrate
+```
+
+Add this to view.yml
+```yaml
+imports:
+   - { resource: "@StyleflashereZPlatformBaseBundle/Resources/config/views.yml" }
+```
+Add this to app.scss after importing all node modules
+```scss
+@import '../../../../vendor/styleflasher/ezplatformbasebundle/src/Resources/public/scss/contentblocks/main';
+```
+> use SCSS variables to override color and space, not CSS.....
+
 
 ## SEO
 DEPRECATED: USE https://github.com/Novactive/NovaeZSEOBundle

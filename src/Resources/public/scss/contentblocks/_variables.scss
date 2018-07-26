@@ -1,0 +1,21 @@
+$contentblock-distance: $grid-gutter-width * 1.5;
+$contentblock-distance-xs: $grid-gutter-width;
+$contentblock-highlight-color: $color-secondary;
+
+$contentblock-text-font-size: 1.8rem;
+
+$contentblock-headline-font-size: 2.2rem;
+$contentblock-headline-color: $contentblock-highlight-color;
+
+$contentblock-panel-background: #eee;
+$contentblock-panel-height: 70px;
+$contentblock-panel-icon-font-size: 2.8rem;
+$contentblock-panel-icon-color: $contentblock-highlight-color;
+$contentblock-panel-text-font-size: 1.8rem;
+$contentblock-panel-text-color: $contentblock-highlight-color;
+
+$contentblock-btn-background: $contentblock-highlight-color;
+$contentblock-btn-color: $color-white;
+$contentblock-btn-size: 20px 60px;
+$contentblock-btn-border-radius: 30px;
+$contentblock-btn-font-size: 1.8rem;

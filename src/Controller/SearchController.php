@@ -18,7 +18,7 @@ class SearchController extends Controller
         $repository = $this->container->get('ezpublish.api.repository');
         $configResolver = $this->container->get('ezpublish.config.resolver');
 
-        $rootLocationId = $configResolver->getParameter( 'content.tree_root.location_id' );
+        $rootLocationId = $configResolver->getParameter('content.tree_root.location_id');
         $rootLocation = $repository->getLocationService()->loadLocation($rootLocationId);
 
         $viewType = $configResolver->getParameter('search.searchresult_view', 'styleflashere_z_platform_base');
@@ -27,6 +27,7 @@ class SearchController extends Controller
         $searchString = $queryString;
 
         $wildcard = $configResolver->getParameter('search.wildcard', 'styleflashere_z_platform_base');
+        $limit = $configResolver->getParameter('search.limit', 'styleflashere_z_platform_base');
         if ($wildcard === true) {
             $searchString .="*";
         }
@@ -45,17 +46,19 @@ class SearchController extends Controller
             $pager = new Pagerfanta(
                 new ContentSearchAdapter($query, $searchService)
             );
-            $limit = 10;
             $pager->setMaxPerPage($limit);
             $pager->setCurrentPage($request->get('page', 1));
             $searchCount = $pager->getNbResults();
         }
 
-        return $this->render('StyleflashereZPlatformBaseBundle:search:search.html.twig', array(
-            'q' => $queryString,
-            'searchCount' => $searchCount,
-            'viewType' => $viewType,
-            'results' => $pager
-        ));
+        return $this->render(
+            'StyleflashereZPlatformBaseBundle:search:search.html.twig',
+            [
+                'q' => $queryString,
+                'searchCount' => $searchCount,
+                'viewType' => $viewType,
+                'results' => $pager
+            ]
+        );
     }
 }
