@@ -77,7 +77,6 @@ class RedirectController
         $request = $event->getRequest();
         $locationId = $request->attributes->get('locationId');
         $location = $this->locationService->loadLocation($locationId);
-        $parentLocation = $this->locationService->loadLocation($location->parentLocationId);
 
         $redirectCandidates = $this->getRedirectToChildrenCandidates($location->contentInfo);
 
@@ -92,7 +91,7 @@ class RedirectController
 
         $query = new LocationQuery();
         $query->query = new LogicalAnd($criteria);
-        $query->sortClauses = $parentLocation->getSortClauses();
+        $query->sortClauses = $location->getSortClauses();
 
         $candidatesResult = $this->searchService->findLocations($query);
 
