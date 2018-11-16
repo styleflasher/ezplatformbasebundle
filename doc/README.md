@@ -71,7 +71,7 @@ This bundle uses the twig filter of https://github.com/Propaganistas/Email-Obfus
 ```
 'myadress@test.com'|obfuscateEmail
 ```
-Therfore we provides a override of the ezrichtext fieldtype. Enable it with:
+Therfore we provides overrides of the ezrichtext and ezemail fieldtypes. Enable them with:
 
 Load the javascript fron the cdn or import it from the assets folder.
 
@@ -83,7 +83,7 @@ ezpublish:
         site_group:
             field_templates:
                 -
-                    template: "StyleflashereZPlatFormBaseBundle:fields:ezrichtext.html.twig"
+                    template: "StyleflashereZPlatFormBaseBundle:fields:content_fields.html.twig"
                     # Priority is optional (default is 0). The higher it is, the higher your template gets in the list.
                     priority: 10
 ```

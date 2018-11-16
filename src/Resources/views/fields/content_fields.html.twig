@@ -1,0 +1,31 @@
+{# The simple_block_field block is a shorthand html block-based fields (like eztext or ezrichtext) #}
+{# You can define a field_value variable before rendering this one if you need special operation for rendering content (i.e. nl2br) #}
+{# Block for field attributes rendering. Useful to add a custom class, id or whatever HTML attribute to the field markup #}
+{% block field_attributes %}
+{% spaceless %}
+    {% set attr = attr|default( {} ) %}
+    {% for attrname, attrvalue in attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}
+{% endspaceless %}
+{% endblock %}
+{% block simple_block_field %}
+{% spaceless %}
+    {% if field_value is not defined %}
+        {% set field_value = field.value %}
+    {% endif %}
+    <div {{ block( 'field_attributes' ) }}>
+        {% endspaceless %}{{ field_value|raw }}{% spaceless %}
+    </div>
+{% endspaceless %}
+{% endblock %}
+{% block ezrichtext_field %}
+    {%- set field_value = field.value.xml|richtext_to_html5|obfuscateEmail -%}
+    {{ block( 'simple_block_field' ) }}
+{% endblock %}
+{% block ezemail_field %}
+    {% spaceless %}
+        {% if not ez_is_field_empty( content, field ) %}
+            {% set field_value = field.value.email %}
+            {{ ('<a href="mailto:' ~ field.value.email|escape( 'url' ) ~ '" ' ~ block( 'field_attributes' ) ~ '>' ~ field.value.email ~ '</a>')|obfuscateEmail }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
