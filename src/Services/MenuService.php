@@ -16,17 +16,20 @@ use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Visibility;
 class MenuService
 {
     private $locationService;
+    private $contentService;
     private $searchService;
     private $configResolver;
     private $sortClauseService;
 
     public function __construct(
         LocationService $locationService,
+        ContentService $contentService,
         SearchService $searchService,
         SortClauseService $sortClauseService,
         $configResolver
     ) {
         $this->locationService = $locationService;
+        $this->contentService = $contentService;
         $this->searchService = $searchService;
         $this->configResolver = $configResolver;
         $this->sortClauseService = $sortClauseService;
@@ -81,6 +84,7 @@ class MenuService
         foreach ($menuItems->searchHits as $menuItem) {
             $menuStructure[] = [
                 'location' => $menuItem->valueObject,
+                'content' => $this->contentService->loadContentByContentInfo($menuItem->valueObject->contentInfo),
                 'submenu' => $this->fetchNextLevelItems($menuItem->valueObject, $menuConfiguration, $level + 1)
             ];
         }

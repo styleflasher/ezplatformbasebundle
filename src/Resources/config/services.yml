@@ -85,6 +85,7 @@ services:
         class: Styleflasher\eZPlatformBaseBundle\Services\MenuService
         arguments:
             - '@ezpublish.api.service.location'
+            - '@ezpublish.api.service.content'
             - '@ezpublish.api.service.search'
             - '@sf.standard.sortClause.service'
             - '@ezpublish.config.resolver'
