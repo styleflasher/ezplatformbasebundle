@@ -7,27 +7,26 @@ use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\SearchService;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeIdentifier;
+use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LocationId;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalAnd;
+use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalNot;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\ParentLocationId;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\Visibility;
 
 class MenuService
 {
-    protected $locationService;
-    protected $contentService;
-    protected $searchService;
-    protected $configResolver;
-    protected $sortClauseService;
+    private $locationService;
+    private $searchService;
+    private $configResolver;
+    private $sortClauseService;
 
     public function __construct(
         LocationService $locationService,
-        ContentService $contentService,
         SearchService $searchService,
         SortClauseService $sortClauseService,
         $configResolver
     ) {
         $this->locationService = $locationService;
-        $this->contentService = $contentService;
         $this->searchService = $searchService;
         $this->configResolver = $configResolver;
         $this->sortClauseService = $sortClauseService;
@@ -41,6 +40,7 @@ class MenuService
         $mainMenuItems = $this->fetchChildren(
             $rootLocation,
             $menuConfiguration['main']['classes'],
+            $menuConfiguration['main']['excluded_location_ids'],
             $sortArray
         );
 
@@ -78,15 +78,11 @@ class MenuService
 
     protected function buildMenuStructure($menuItems, $menuConfiguration, $level) {
         $menuStructure = [];
-        $excludeArray = ($level === 0) ? $menuConfiguration['main']['excluded_location_ids'] : $menuConfiguration['sub']['excluded_location_ids'];
         foreach ($menuItems->searchHits as $menuItem) {
-            if (!in_array($menuItem->valueObject->id, $excludeArray)) {
-                $menuStructure[] = array(
-                    'location' => $menuItem->valueObject,
-                    'content' => $this->contentService->loadContentByContentInfo($menuItem->valueObject->contentInfo),
-                    'submenu' => $this->fetchNextLevelItems($menuItem->valueObject, $menuConfiguration, $level + 1)
-                );
-            }
+            $menuStructure[] = [
+                'location' => $menuItem->valueObject,
+                'submenu' => $this->fetchNextLevelItems($menuItem->valueObject, $menuConfiguration, $level + 1)
+            ];
         }
 
         return $menuStructure;
@@ -101,6 +97,7 @@ class MenuService
         $menuItems = $this->fetchChildren(
             $location,
             $menuConfiguration['sub']['classes'],
+            $menuConfiguration['sub']['excluded_location_ids'],
             $sortArray
         );
 
@@ -109,14 +106,19 @@ class MenuService
 
     protected function fetchChildren(
         $subTreeLocation,
-        array $typeIdentifiers = array(),
-        array $sortMethods = array()
+        array $typeIdentifiers = [],
+        array $excludedLocationIds = [],
+        array $sortMethods = []
     ) {
-        $criterion = array(
+        $criterion = [
             new ContentTypeIdentifier($typeIdentifiers),
             new ParentLocationId([ $subTreeLocation->id ]),
             new Visibility(Visibility::VISIBLE),
-        );
+        ];
+
+        if (count($excludedLocationIds)) {
+            $criterion[] = new LogicalNot(new LocationId($excludedLocationIds));
+        }
 
         $query = new LocationQuery();
         $query->filter = new LogicalAnd($criterion);
