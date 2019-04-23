@@ -26,10 +26,11 @@ class MenuController
     public function renderMenuAction(
         $locationId,
         $template = 'StyleflashereZPlatformBaseBundle:components:topmenu.html.twig',
-        $params = []
+        $params = [],
+        $returnArray = false
     ) {
         $location = $this->locationService->loadLocation($locationId);
-        $menu = $this->menuService->generateTopmenu($location);
+        $menu = $this->menuService->generateTopmenu($location, $returnArray); // AS
         $path = explode('/', $location->pathString);
         array_shift($path);
         array_pop($path);

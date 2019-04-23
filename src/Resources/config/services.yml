@@ -87,6 +87,8 @@ services:
             - '@ezpublish.api.service.location'
             - '@ezpublish.api.service.content'
             - '@ezpublish.api.service.search'
+            - '@ezpublish.route_reference.generator'
+            - '@router'
             - '@sf.standard.sortClause.service'
             - '@ezpublish.config.resolver'
 
