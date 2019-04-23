@@ -30,7 +30,7 @@ class MenuController
         $returnArray = false
     ) {
         $location = $this->locationService->loadLocation($locationId);
-        $menu = $this->menuService->generateTopmenu($location, $returnArray); // AS
+        $menu = $this->menuService->generateTopmenu($location, $returnArray);
         $path = explode('/', $location->pathString);
         array_shift($path);
         array_pop($path);
