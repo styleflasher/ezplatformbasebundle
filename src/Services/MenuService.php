@@ -5,6 +5,8 @@ namespace Styleflasher\eZPlatformBaseBundle\Services;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\SearchService;
+use eZ\Publish\Core\MVC\Symfony\Routing\Generator\RouteReferenceGeneratorInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeIdentifier;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion\LocationId;
@@ -25,17 +27,21 @@ class MenuService
         LocationService $locationService,
         ContentService $contentService,
         SearchService $searchService,
+        RouteReferenceGeneratorInterface $routeRefGenerator,
+        UrlGeneratorInterface $router,
         SortClauseService $sortClauseService,
         $configResolver
     ) {
         $this->locationService = $locationService;
         $this->contentService = $contentService;
         $this->searchService = $searchService;
+        $this->routeRefGenerator = $routeRefGenerator;
+        $this->router = $router;
         $this->configResolver = $configResolver;
         $this->sortClauseService = $sortClauseService;
     }
 
-    public function generateTopmenu( $location ) {
+    public function generateTopmenu( $location, $returnArray = false) {
         $rootLocation = $this->locationService->loadLocation($this->configResolver->getParameter( 'content.tree_root.location_id' ));
         $sortArray = $this->sortClauseService->generateSortClause($rootLocation->sortField, $rootLocation->sortOrder);
         $menuConfiguration = $this->getMenuConfiguration();
@@ -47,7 +53,8 @@ class MenuService
             $sortArray
         );
 
-        $menuStructure = $this->buildMenuStructure($mainMenuItems, $menuConfiguration, 0);
+        $menuStructure = $returnArray ? $this->buildMenuStructureArray($mainMenuItems, $menuConfiguration, 0, $location) : $this->buildMenuStructure($mainMenuItems, $menuConfiguration, 0);
+
 
         $pathArray = explode('/', $location->pathString);
         array_shift($pathArray);
@@ -92,7 +99,24 @@ class MenuService
         return $menuStructure;
     }
 
-    protected function fetchNextLevelItems($location, $menuConfiguration, $level) {
+    protected function buildMenuStructureArray($menuItems, $menuConfiguration, $level, $currentLocation) {
+        $menuStructure = [];
+        foreach ($menuItems->searchHits as $menuItem) {
+            $content = $this->contentService->loadContentByContentInfo($menuItem->valueObject->contentInfo);
+            $route = $this->routeRefGenerator->generate($menuItem->valueObject);
+
+            $menuStructure[] = [
+                'name'=> $content->getName(),
+                'url' => $this->router->generate($route, []),
+                'active' => $currentLocation->id == $menuItem->valueObject->id ? true : false,
+                'submenu' => $this->fetchNextLevelItems($menuItem->valueObject, $menuConfiguration, $level + 1, true)
+            ];
+        }
+
+        return $menuStructure;
+    }
+
+    protected function fetchNextLevelItems($location, $menuConfiguration, $level, $returnArray = false) {
         if ( $level > $menuConfiguration['levels'] || !$menuConfiguration['has_submenu'] ) {
             return [];
         }
@@ -105,7 +129,7 @@ class MenuService
             $sortArray
         );
 
-        return $this->buildMenuStructure($menuItems, $menuConfiguration, $level + 1);
+        return $returnArray ? $this->buildMenuStructureArray($menuItems, $menuConfiguration, $level + 1, $location) : $this->buildMenuStructure($menuItems, $menuConfiguration, $level + 1);
     }
 
     protected function fetchChildren(
