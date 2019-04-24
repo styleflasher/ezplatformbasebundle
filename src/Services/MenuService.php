@@ -43,6 +43,7 @@ class MenuService
 
     public function generateTopmenu( $location, $returnArray = false) {
         $rootLocation = $this->locationService->loadLocation($this->configResolver->getParameter( 'content.tree_root.location_id' ));
+        $this->currentLocation = $location;
         $sortArray = $this->sortClauseService->generateSortClause($rootLocation->sortField, $rootLocation->sortOrder);
         $menuConfiguration = $this->getMenuConfiguration();
 
@@ -99,7 +100,7 @@ class MenuService
         return $menuStructure;
     }
 
-    protected function buildMenuStructureArray($menuItems, $menuConfiguration, $level, $currentLocation) {
+    protected function buildMenuStructureArray($menuItems, $menuConfiguration, $level, $location) {
         $menuStructure = [];
         foreach ($menuItems->searchHits as $menuItem) {
             $content = $this->contentService->loadContentByContentInfo($menuItem->valueObject->contentInfo);
@@ -108,7 +109,7 @@ class MenuService
             $menuStructure[] = [
                 'name'=> $content->getName(),
                 'url' => $this->router->generate($route, []),
-                'active' => $currentLocation->id == $menuItem->valueObject->id ? true : false,
+                'active' => $this->currentLocation->id == $menuItem->valueObject->id ? true : false,
                 'submenu' => $this->fetchNextLevelItems($menuItem->valueObject, $menuConfiguration, $level + 1, true)
             ];
         }
