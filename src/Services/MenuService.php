@@ -43,6 +43,7 @@ class MenuService
 
     public function generateTopmenu( $location, $returnArray = false) {
         $rootLocation = $this->locationService->loadLocation($this->configResolver->getParameter( 'content.tree_root.location_id' ));
+        $this->currentLocationId = $location->id;
         $sortArray = $this->sortClauseService->generateSortClause($rootLocation->sortField, $rootLocation->sortOrder);
         $menuConfiguration = $this->getMenuConfiguration();
 
@@ -53,7 +54,7 @@ class MenuService
             $sortArray
         );
 
-        $menuStructure = $returnArray ? $this->buildMenuStructureArray($mainMenuItems, $menuConfiguration, 0, $location) : $this->buildMenuStructure($mainMenuItems, $menuConfiguration, 0);
+        $menuStructure = $returnArray ? $this->buildMenuStructureArray($mainMenuItems, $menuConfiguration, 0) : $this->buildMenuStructure($mainMenuItems, $menuConfiguration, 0);
 
 
         $pathArray = explode('/', $location->pathString);
@@ -99,7 +100,7 @@ class MenuService
         return $menuStructure;
     }
 
-    protected function buildMenuStructureArray($menuItems, $menuConfiguration, $level, $currentLocation) {
+    protected function buildMenuStructureArray($menuItems, $menuConfiguration, $level) {
         $menuStructure = [];
         foreach ($menuItems->searchHits as $menuItem) {
             $content = $this->contentService->loadContentByContentInfo($menuItem->valueObject->contentInfo);
@@ -108,7 +109,7 @@ class MenuService
             $menuStructure[] = [
                 'name'=> $content->getName(),
                 'url' => $this->router->generate($route, []),
-                'active' => $currentLocation->id == $menuItem->valueObject->id ? true : false,
+                'active' => $this->currentLocationId == $menuItem->valueObject->id ? true : false,
                 'submenu' => $this->fetchNextLevelItems($menuItem->valueObject, $menuConfiguration, $level + 1, true)
             ];
         }
@@ -129,7 +130,7 @@ class MenuService
             $sortArray
         );
 
-        return $returnArray ? $this->buildMenuStructureArray($menuItems, $menuConfiguration, $level + 1, $location) : $this->buildMenuStructure($menuItems, $menuConfiguration, $level + 1);
+        return $returnArray ? $this->buildMenuStructureArray($menuItems, $menuConfiguration, $level + 1) : $this->buildMenuStructure($menuItems, $menuConfiguration, $level + 1);
     }
 
     protected function fetchChildren(
