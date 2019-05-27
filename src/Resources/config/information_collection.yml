@@ -1,0 +1,12 @@
+services:
+    Styleflasher\eZPlatformBaseBundle\InformationCollection\Factory\ExtendedEmailDataFactory:
+        parent: netgen_information_collection.factory.email_data
+        autowire: true
+
+    Styleflasher\eZPlatformBaseBundle\InformationCollection\Mailer\ExtendedMailer:
+        autowire: true
+
+    Styleflasher\eZPlatformBaseBundle\InformationCollection\Action\ExtendedEmail:
+        autowire: true
+        tags:
+            - { name: netgen_information_collection.action, alias: extended_email }

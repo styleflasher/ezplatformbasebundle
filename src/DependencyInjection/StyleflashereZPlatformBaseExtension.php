@@ -29,6 +29,7 @@ class StyleflashereZPlatformBaseExtension extends Extension implements PrependEx
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
+        $loader->load('information_collection.yml');
         $loader->load('parameters.yml');
         $loader->load('seo_settings.yml');
 
