@@ -21,6 +21,8 @@
 
 namespace Styleflasher\eZPlatformBaseBundle\FieldValueProvider;
 
+use Styleflasher\eZPlatformBaseBundle\FieldValueProvider;
+
 /**
  * Fixed Value
  *

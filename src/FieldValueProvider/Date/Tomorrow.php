@@ -21,6 +21,8 @@
 
 namespace Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date;
 
+use Styleflasher\eZPlatformBaseBundle\FieldValueProvider;
+
 /**
  * Description of Currentdate
  *
