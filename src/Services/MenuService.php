@@ -109,6 +109,7 @@ class MenuService
             $menuStructure[] = [
                 'name'=> $content->getName(),
                 'url' => $this->router->generate($route, []),
+                'locationId' => $menuItem->valueObject->id,
                 'active' => $this->currentLocationId == $menuItem->valueObject->id ? true : false,
                 'submenu' => $this->fetchNextLevelItems($menuItem->valueObject, $menuConfiguration, $level + 1, true)
             ];
