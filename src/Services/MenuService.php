@@ -5,6 +5,7 @@ namespace Styleflasher\eZPlatformBaseBundle\Services;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\SearchService;
+use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\Core\MVC\Symfony\Routing\Generator\RouteReferenceGeneratorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
@@ -102,12 +103,14 @@ class MenuService
 
     protected function buildMenuStructureArray($menuItems, $menuConfiguration, $level) {
         $menuStructure = [];
+        $languages = $this->configResolver->getParameter( 'languages' );
         foreach ($menuItems->searchHits as $menuItem) {
             $content = $this->contentService->loadContentByContentInfo($menuItem->valueObject->contentInfo);
             $route = $this->routeRefGenerator->generate($menuItem->valueObject);
+            $languageCode = $this->getEligablelanguageCode($content, $languages);
 
             $menuStructure[] = [
-                'name'=> $content->getName(),
+                'name'=> $content->getName($languageCode),
                 'url' => $this->router->generate($route, []),
                 'locationId' => $menuItem->valueObject->id,
                 'active' => $this->currentLocationId == $menuItem->valueObject->id ? true : false,
@@ -155,5 +158,21 @@ class MenuService
         $query->sortClauses = $sortMethods;
 
         return $this->searchService->findLocations($query);
+    }
+
+    /**
+     * @param Content $content
+     * @param array $languages
+     * @return string
+     */
+    private function getEligablelanguageCode(Content $content, array $languages) :string
+    {
+        foreach ($languages as $language) {
+            if (in_array($language, $content->versionInfo->languageCodes)) {
+                return $language;
+            }
+        }
+
+        return $content->contentInfo->mainLanguageCode;
     }
 }
