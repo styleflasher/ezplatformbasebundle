@@ -9,7 +9,6 @@
         }
     ],
     "require": {
-        "propaganistas/email-obfuscator": "~1.0",
         "netgen/information-collection-bundle": "^1.6"
     },
     "require-dev": {
