@@ -84,10 +84,12 @@ ezpublish:
                     # Priority is optional (default is 0). The higher it is, the higher your template gets in the list.
                     priority: 10
 
+```
 Import the required js from the assets folder.
 
-    <script src="/bundles/styleflasherezplatformbase/js/EmailObfuscator.js"></script>
-
+```
+<script src="/bundles/styleflasherezplatformbase/js/EmailObfuscator.js"></script>
+```
 
 ## Youtube twig filter
 ```
