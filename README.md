@@ -1,6 +1,11 @@
 StyleflashereZPlatformBaseBundle
 ================================
 
+# Warning
+
+- most features are obsolete in latest ezplatform projects
+- this package exists for maintainance only
+
 Base bundle for ezpublish 5 and ezplatform projects.
 
 # Features
@@ -22,4 +27,3 @@ Base bundle for ezpublish 5 and ezplatform projects.
 [Changelog](doc/CHANGELOG.md)
 
 [License](LICENSE)
-

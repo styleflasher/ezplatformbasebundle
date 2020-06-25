@@ -67,15 +67,12 @@ system:
 
 ## E-Mail obfuscation
 
-This bundle uses the twig filter of https://github.com/Propaganistas/Email-Obfuscator to obfuscate the e-mails with 
+This bundle used the twig filter of https://github.com/Propaganistas/Email-Obfuscator to obfuscate the e-mails with. This package doesn't exist anymore.
+That's why EmailObfuscator.js is included in this package now.
 ```
 'myadress@test.com'|obfuscateEmail
 ```
 Therfore we provides overrides of the ezrichtext and ezemail fieldtypes. Enable them with:
-
-Load the javascript fron the cdn or import it from the assets folder.
-
-https://cdn.rawgit.com/Propaganistas/Email-Obfuscator/master/assets/EmailObfuscator.min.js
 
 ```yaml
 ezpublish:
@@ -86,7 +83,11 @@ ezpublish:
                     template: "StyleflashereZPlatFormBaseBundle:fields:content_fields.html.twig"
                     # Priority is optional (default is 0). The higher it is, the higher your template gets in the list.
                     priority: 10
-```
+
+Import the required js from the assets folder.
+
+    <script src="/bundles/styleflasherezplatformbase/js/EmailObfuscator.js"></script>
+
 
 ## Youtube twig filter
 ```
