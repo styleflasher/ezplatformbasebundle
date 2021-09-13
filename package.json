@@ -1,6 +1,6 @@
 {
   "name": "ezplatformbasebundle",
-  "version": "1.0.0",
+  "version": "1.3.3",
   "description": "Base bundle for ezplatform projects",
   "main": "index.js",
   "dependencies": {},

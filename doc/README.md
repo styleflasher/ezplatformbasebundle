@@ -67,7 +67,7 @@ system:
 
 ## E-Mail obfuscation
 
-This bundle uses the twig filter of https://github.com/Propaganistas/Email-Obfuscator to obfuscate the e-mails with 
+This bundle uses the twig filter of https://github.com/gremo/email-obfuscator to obfuscate the e-mails with 
 ```
 'myadress@test.com'|obfuscateEmail
 ```
@@ -75,7 +75,7 @@ Therfore we provides a override of the ezrichtext fieldtype. Enable it with:
 
 Load the javascript fron the cdn or import it from the assets folder.
 
-https://cdn.rawgit.com/Propaganistas/Email-Obfuscator/master/assets/EmailObfuscator.min.js
+https://raw.githubusercontent.com/gremo/email-obfuscator/master/assets/email-obfuscator.min.js
 
 ```yaml
 ezpublish:

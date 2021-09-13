@@ -222,7 +222,7 @@ services:
 
     seo_functions.controller:
         class: Styleflasher\eZPlatformBaseBundle\Controller\SEOController
-        arguments: 
+        arguments:
             - '@ezpublish.view_manager'
         calls:
             - [setContainer, ['@service_container']]
@@ -230,6 +230,6 @@ services:
         alias: seo_functions.controller
 
     obfuscateemail.twig_extension:
-        class: \Propaganistas\EmailObfuscator\Twig\Extension
+        class: \Gremo\EmailObfuscator\Twig\Extension
         tags:
             - { name: twig.extension }
