@@ -10,8 +10,8 @@ class Configuration extends SiteAccessConfiguration
 
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('styleflashere_z_platform_base');
+        $treeBuilder = new TreeBuilder('styleflashere_z_platform_base');
+        $rootNode = $treeBuilder->getRootNode();
 
         $systemNode = $this->generateScopeBaseNode( $rootNode );
         $systemNode
