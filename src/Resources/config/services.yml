@@ -113,16 +113,16 @@ services:
 
     # Criterion Generators
     sf.ezp_base.criterion.child:
-        class: %sf.ezp_base.criterion.child.class%
+        class: '%sf.ezp_base.criterion.child.class%'
 
     sf.ezp_base.criterion.compound:
-        class: %sf.ezp_base.criterion.compound.class%
+        class: '%sf.ezp_base.criterion.compound.class%'
 
     sf.ezp_base.criterion.field:
-        class: %sf.ezp_base.criterion.field.class%
+        class: '%sf.ezp_base.criterion.field.class%'
 
     sf.ezp_base.controller.fetch_children:
-        class: %sf.ezp_base.controller.fetch_children.class%
+        class: '%sf.ezp_base.controller.fetch_children.class%'
         arguments:
             - '@ez_content'
             - '@ezpublish.api.service.search'
@@ -133,7 +133,7 @@ services:
 
     # Sort Clause Generators
     sf.ezp_base.sort_clause.location_priority:
-        class: %sf.ezp_base.sort_clause.location_priority.class%
+        class: '%sf.ezp_base.sort_clause.location_priority.class%'
         abstract: true
 
     sf.ezp_base.sort_clause.location_priority.asc:
@@ -147,7 +147,7 @@ services:
             - [setSortDirection, ['desc']]
 
     sf.ezp_base.sort_clause.date_published:
-        class: %sf.ezp_base.sort_clause.date_published.class%
+        class: '%sf.ezp_base.sort_clause.date_published.class%'
         abstract: true
 
     sf.ezp_base.sort_clause.date_published.asc:
@@ -161,7 +161,7 @@ services:
             - [setSortDirection, ['desc']]
 
     sf.ezp_base.sort_clause.content_name:
-        class: %sf.ezp_base.sort_clause.content_name.class%
+        class: '%sf.ezp_base.sort_clause.content_name.class%'
         abstract: true
 
     sf.ezp_base.sort_clause.content_name.asc:
@@ -175,7 +175,7 @@ services:
             - [setSortDirection, ['desc']]
 
     sf.ezp_base.sort_clause.backend_value:
-        class: %sf.ezp_base.sort_clause.backend_value.class%
+        class: '%sf.ezp_base.sort_clause.backend_value.class%'
 
     sf.ezp_base.sort_clause.field_value:
         class: Styleflasher\eZPlatformBaseBundle\SortClauseGenerators\FieldValue
@@ -184,7 +184,7 @@ services:
             - [setSortDirection, ['asc']]
             - [setRepository, ['@ezpublish.api.repository']]
     sf.ezp_base.sort_clause.composite:
-        class: %sf.ezp_base.sort_clause.composite.class%
+        class: '%sf.ezp_base.sort_clause.composite.class%'
         arguments:
             - '@ezpublish.config.resolver'
         #example class
@@ -192,7 +192,7 @@ services:
         #       - [addSortClauseGenerators, [[@sf.ezp_base.sort_clause.location_priority.desc, @sf.ezp_base.sort_clause.backend_value]]]
         #
     sf.ezp_base.sort_clause.date_modified:
-        class: %sf.ezp_base.sort_clause.date_modified.class%
+        class: '%sf.ezp_base.sort_clause.date_modified.class%'
         abstract: true
 
     sf.ezp_base.sort_clause.date_modified.asc:
@@ -208,16 +208,16 @@ services:
     # Value Providers
 
     sf.ezp_base.value_provider.fixed:
-        class: %sf.ezp_base.value_provider.fixed.class%
+        class: '%sf.ezp_base.value_provider.fixed.class%'
 
     sf.ezp_base.value_provider.date.today:
-        class: %sf.ezp_base.value_provider.date.today.class%
+        class: '%sf.ezp_base.value_provider.date.today.class%'
 
     sf.ezp_base.value_provider.date.tomorrow:
-        class: %sf.ezp_base.value_provider.date.tomorrow.class%
+        class: '%sf.ezp_base.value_provider.date.tomorrow.class%'
 
     sf.ezp_base.value_provider.date.yesterday:
-        class: %sf.ezp_base.value_provider.date.yesterday.class%
+        class: '%sf.ezp_base.value_provider.date.yesterday.class%'
 
     # Example Criteria
     # example child criterion for 'news' class
