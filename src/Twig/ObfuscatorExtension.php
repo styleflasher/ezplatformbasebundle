@@ -2,10 +2,10 @@
 
 namespace Styleflasher\eZPlatformBaseBundle\Twig;
 
-use Twig_Extension;
-use Twig_SimpleFilter;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
-class ObfuscatorExtension extends Twig_Extension
+class ObfuscatorExtension extends AbstractExtension
 {
     /**
      * Returns the name of the extension.
@@ -25,11 +25,7 @@ class ObfuscatorExtension extends Twig_Extension
     public function getFilters()
     {
         return [
-            new Twig_SimpleFilter(
-                'obfuscateEmail',
-                [$this, 'parse'],
-                ['is_safe' => ['html']]
-            ),
+            new TwigFilter('obfuscateEmail', [$this, 'parse'])
         ];
     }
 
