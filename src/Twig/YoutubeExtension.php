@@ -10,8 +10,8 @@ class YoutubeExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('youtube', array($this, 'youtubeFilter')),
-            new TwigFilter('youtubeid', array($this, 'youtubeIdFilter'))
+            new TwigFilter('youtube', [$this, 'youtubeFilter']),
+            new TwigFilter('youtubeid', [$this, 'youtubeIdFilter'])
         ];
     }
 

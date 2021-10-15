@@ -25,7 +25,7 @@ class ObfuscatorExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('obfuscateEmail', array($this, 'parse'))
+            new TwigFilter('obfuscateEmail', [$this, 'parse'])
         ];
     }
 
