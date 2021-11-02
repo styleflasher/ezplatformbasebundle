@@ -21,6 +21,8 @@
 
 namespace Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date;
 
+use DateTime;
+use DateTimeZone;
 use Styleflasher\eZPlatformBaseBundle\FieldValueProvider;
 
 /**
@@ -31,6 +33,6 @@ use Styleflasher\eZPlatformBaseBundle\FieldValueProvider;
 class Today extends FieldValueProvider
 {
     public function getValue() {
-        return strtotime("today");
+        return (new DateTime("today", new DateTimeZone("UTC")))->getTimestamp();
     }
 }
