@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "netgen/information-collection-bundle": "^1.6"
+        "netgen/information-collection-bundle": "^1.6|^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "5.5.*",
