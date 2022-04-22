@@ -14,7 +14,6 @@ parameters:
     sf.ezp_base.value_provider.date.today.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Today
     sf.ezp_base.value_provider.date.tomorrow.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Tomorrow
     sf.ezp_base.value_provider.date.yesterday.class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Yesterday
-
     sf.ezp_base.location_service.class: Styleflasher\eZPlatformBaseBundle\eZ\Publish\Core\Repository\LocationService
 
 services:
@@ -218,6 +217,9 @@ services:
 
     sf.ezp_base.value_provider.date.yesterday:
         class: '%sf.ezp_base.value_provider.date.yesterday.class%'
+
+    sf.ezp_base.value_provider.date.now:
+        class: Styleflasher\eZPlatformBaseBundle\FieldValueProvider\Date\Now
 
     # Example Criteria
     # example child criterion for 'news' class

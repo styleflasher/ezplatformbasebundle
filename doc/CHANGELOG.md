@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.9.1] - 2022-04-22
+### Fixed
+- Fix security issues with node-sass und phpunit.
+
+### Added
+- Add date field value provider now 
+
 ## [2.6.3]
 ### Fixed
 - Fixed email obfuscator, added required EmailObfuscator.js as original Bundle doesn't exist anymore
